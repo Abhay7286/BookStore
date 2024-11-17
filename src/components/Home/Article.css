@@ -1,0 +1,17 @@
+.article{
+    text-align: center;
+    margin-top: 2em;
+}
+.articlebox{
+    max-width: 21rem;
+}
+.articlebox>img{
+    width: 20rem;
+    height: 15rem;
+}
+.articleContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+}

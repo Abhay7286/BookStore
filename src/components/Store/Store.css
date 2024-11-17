@@ -1,0 +1,61 @@
+.booksworld-container{
+    text-align: center;
+    margin: 1em 0;
+}
+.aboutus-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(32, 2, 32);
+    color: white;
+}
+.aboutus-img{
+    width: 45em;
+}
+.aboutus-text{
+    font-size: 20px;
+    padding: 0 3px;
+}
+.vision-container{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 5em;
+    margin: 2em 9em;
+    
+}
+.visionbox,.missionbox{
+    width: 25em;
+    padding: 2em;
+    border-radius: 12px;
+    box-shadow: 3px -4px 2px 2px white;
+    background-color: white;
+}
+.xcontainer{
+    text-align: center;
+    background-color: whitesmoke;
+    height: 82vh;
+}
+.xhead>h3{
+    font-size: 30px;
+    padding: 2em 0 0 0;
+}
+.xhead{
+    width: 60em;
+    margin: auto;
+    margin-bottom: 3em;
+}
+.community-img{
+    width: 40em;
+    border-radius: 70px;
+}
+.community-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2em;
+    padding: 1em 2em;
+    background-color: whitesmoke;
+    text-align: center;
+}

@@ -1,0 +1,30 @@
+main{
+    margin: 3em;
+}
+.subscribe{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+.input{
+   width: 28em;
+   padding: 12px;
+   border: 2px solid whitesmoke;
+}
+.subscribe>button{
+    background-color: #312BD8;
+    color: white;
+    position: absolute;
+    left: 73.5em;
+    margin-top: 6.35em;
+    border: none;
+}
+.sub-container{
+    display: flex;
+    align-items: center;
+}
+.blog-form{
+    display: flex;
+    gap: 1em;
+}
