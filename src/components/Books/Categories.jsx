@@ -104,7 +104,7 @@ const Categories = () => {
             <p>Loading...</p>
           ) : books && books.length > 0 ? (
             books.map((book) => (
-              <div className="card" key={book.id}>
+              <div className="card-collection" key={book.id}>
                 <img
                   src={book.volumeInfo.imageLinks?.thumbnail || ikagai}
                   alt={book.volumeInfo.title}

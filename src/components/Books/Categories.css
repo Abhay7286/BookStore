@@ -90,7 +90,20 @@ body {
   width: 100%;
 }
 
-.card{
-  margin: 1em 0;
-}
+.card-collection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    margin: 1em 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+    width: 300px;
+    text-align: center;
+  }
 
