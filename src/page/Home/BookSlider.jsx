@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./BookSlider.css";
-import bookimg from "../../assets/bookimg.jpg";
 import homebackground from "../../assets/homebackground.jpg";
 
 const BookSlider = () => {

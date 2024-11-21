@@ -28,7 +28,7 @@ const Card = () => {
         "id": 3,
         "title": "Future World",
         "author": "James O'Neil",
-        "genre": "Science Fiction",
+        "genre": "Scifi",
         "price": 399,
         "publishedYear": 2020,
         "rating": 4.3,

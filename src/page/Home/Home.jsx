@@ -1,5 +1,5 @@
 import {React,useState} from "react";
-import Card from "./Card";
+import Card from "../../components/Card/Card.jsx";
 import "./Home.css";
 import icon from "../../assets/icon1.png"
 import { Link } from "react-router-dom";
@@ -18,7 +18,7 @@ const Home = () => {
         <img src={homebackground} alt="background" />
       <div className="maintext">
         <h1>Best Place To Find Your <span>Favourite Book</span></h1>
-        <p>Discover millions of book title with the best price offered here.Available for worldwide shipping and payment.</p>
+        <p>Discover millions of book title with the best price offered here. Available for worldwide shipping and payment.</p>
         <div className="search-bar">
           <input type="search" placeholder='Search here'/>
           <button type="submit" className="searchbtn">search</button>

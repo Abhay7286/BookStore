@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Categories.css";
-import "../Home/Card.css";
+import "../../components/Card/Card.css";
 import ikagai from "../../assets/ikagai.jpg";
 import bookData from "../../hooks/bookData.js";
 
