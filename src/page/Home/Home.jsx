@@ -4,14 +4,15 @@ import "./Home.css";
 import icon from "../../assets/icon1.png"
 import { Link } from "react-router-dom";
 import homebackground from "../../assets/img.png";
-import ikagai from '../../assets/ikagai.jpg';
 import loginimg from '../../assets/loginimg.jpg';
 import rocket from '../../assets/rocket.webp';
 import Reviews from "./Reviews";
 import Article from "./Article";
+import Romance from "../../components/Collections/Romance.jsx";
 
 const Home = () => {
   const [gen, setGen] = useState("Romance");
+  
   return (
     <>
       <div className="main">
@@ -88,7 +89,7 @@ const Home = () => {
                 <li onClick={()=>{setGen("Romance")}}><Link>Romance {gen=="Romance"?<hr/>:''}</Link></li>
                 <li onClick={()=>{setGen("Mystery")}}><Link>Mystery {gen=="Mystery"?<hr/>:''}</Link></li>
                 <li onClick={()=>{setGen("Thriller")}}><Link>Thriller {gen=="Thriller"?<hr/>:''}</Link></li>
-                <li onClick={()=>{setGen("Sci-fi")}}><Link>Sci-fi{gen=="Sci-fi"?  <hr/>:''}</Link></li>
+                <li onClick={()=>{setGen("fantasy")}}><Link>fantasy{gen=="fantasy"?  <hr/>:''}</Link></li>
                 <li onClick={()=>{setGen("Historical")}}><Link>Historical{gen=="Historical"?  <hr/>:''}</Link></li>
                 <li><Link>View all &rarr; </Link></li>
                 
@@ -96,84 +97,13 @@ const Home = () => {
         </div>
 
         <div className="popular-section">
-          <div className="book"> 
-            <img src={ikagai} alt="ikagai" />
-            <div className="description">
-              <div className="price">$99.99</div>
-              <div className="name">ikagai</div>
-            </div>
-          </div>
-          <div className="book"> 
-            <img src={ikagai} alt="ikagai" />
-            <div className="description">
-              <div className="price">$99.99</div>
-              <div className="name">ikagai</div>
-            </div>
-          </div>
-          <div className="book"> 
-            <img src={ikagai} alt="ikagai" />
-            <div className="description">
-              <div className="price">$99.99</div>
-              <div className="name">ikagai</div>
-            </div>
-          </div>
-          <div className="book"> 
-            <img src={ikagai} alt="ikagai" />
-            <div className="description">
-              <div className="price">$99.99</div>
-              <div className="name">ikagai</div>
-            </div>
-          </div>
-          <div className="book"> 
-            <img src={ikagai} alt="ikagai" />
-            <div className="description">
-              <div className="price">$99.99</div>
-              <div className="name">ikagai</div>
-            </div>
-          </div>
-          <div className="book"> 
-            <img src={ikagai} alt="ikagai" />
-            <div className="description">
-              <div className="price">$99.99</div>
-              <div className="name">ikagai</div>
-            </div>
-          </div>
-          <div className="book"> 
-            <img src={ikagai} alt="ikagai" />
-            <div className="description">
-              <div className="price">$99.99</div>
-              <div className="name">ikagai</div>
-            </div>
-          </div>
-          <div className="book"> 
-            <img src={ikagai} alt="ikagai" />
-            <div className="description">
-              <div className="price">$99.99</div>
-              <div className="name">ikagai</div>
-            </div>
-          </div>
-          <div className="book"> 
-            <img src={ikagai} alt="ikagai" />
-            <div className="description">
-              <div className="price">$99.99</div>
-              <div className="name">ikagai</div>
-            </div>
-          </div>
-          <div className="book"> 
-            <img src={ikagai} alt="ikagai" />
-            <div className="description">
-              <div className="price">$99.99</div>
-              <div className="name">ikagai</div>
-            </div>
-          </div>
-          <div className="book"> 
-            <img src={ikagai} alt="ikagai" />
-            <div className="description">
-              <div className="price">$99.99</div>
-              <div className="name">ikagai</div>
-            </div>
-          </div>
+          {gen === "Romance" && <Romance />}
+          {gen === "Mystery" && <Romance />}
+          {gen === "Thriller" && <Romance />}
+          {gen === "fantasy" && <Romance />}
+          {gen === "Historical" && <Romance />}
         </div>
+
       </div>
 
       <div className="discoverContainer">
@@ -202,7 +132,7 @@ const Home = () => {
       <button className="view"><Link to="/blog">view all &rarr;</Link></button>
       </div>
     </>
-  );
+  )
 };
 
 export default Home;

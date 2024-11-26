@@ -5,7 +5,7 @@ import ikagai from "../../assets/ikagai.jpg";
 import bookData from "../../hooks/bookData.js";
 
 const Categories = () => {
-  const { books: fetchedBooks, loading } = bookData();
+  const { bestBooks: fetchedBooks, loading } = bookData();
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
