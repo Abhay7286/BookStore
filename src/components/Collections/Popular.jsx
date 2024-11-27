@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import Romance from './Romance.jsx';
 import Thriller from './Thriller.jsx';
 import Fantasy from "./Fantasy.jsx";
-// import Mystery from "./Mystery.jsx";
-// import Historical from "./Historical.jsx";
+import Historical from "./Historical.jsx";
+import Mystery from "./Mystery.jsx";
 
 const Popular = () => {
   const [gen, setGen] = useState("Romance");
@@ -19,17 +19,17 @@ const Popular = () => {
                 <li onClick={()=>{setGen("Thriller")}}><Link>Thriller {gen=="Thriller"?<hr/>:''}</Link></li>
                 <li onClick={()=>{setGen("fantasy")}}><Link>fantasy{gen=="fantasy"?  <hr/>:''}</Link></li>
                 <li onClick={()=>{setGen("Historical")}}><Link>Historical{gen=="Historical"?  <hr/>:''}</Link></li>
-                <li><Link>View all &rarr; </Link></li>
+                <li><Link to="/categories">View all &rarr; </Link></li>
                 
           </div>
         </div>
 
         <div className="popular-section">
           {gen === "Romance" && <Romance />}
-          {gen === "Mystery" && <Fantasy />}
+          {gen === "Mystery" && <Mystery />}
           {gen === "Thriller" && <Thriller />}
           {gen === "fantasy" && <Fantasy />}
-          {gen === "Historical" && <Romance />}
+          {gen === "Historical" && <Historical />}
         </div>
       </div>
     </>

@@ -6,21 +6,30 @@ const Romance = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    setBooks(romance);
+   if (romance) setBooks(romance);
   }, [romance]);
 
   return (
     <>
-      {books && books.map((book) => (  // Ensure books is available before mapping
+    {loading ? (
+      <p>Loading books...</p>
+    ) : books.length > 0 ? (
+      books.map((book) => (
         <div className="book" key={book.id}>
-          <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
+          <img
+            src={book.volumeInfo.imageLinks?.thumbnail}
+            alt={book.volumeInfo.title}
+          />
           <div className="description">
             <div className="name">{book.volumeInfo.title}</div>
             <div className="price">$99.99</div>
           </div>
         </div>
-      ))}
-    </>
+      ))
+    ) : (
+      <p>No thriller books available.</p>
+    )}
+  </>
   );
 };
 

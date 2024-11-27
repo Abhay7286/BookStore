@@ -31,7 +31,7 @@ const Home = () => {
         <div className="typeContainer">
         <div className="type">
           <img src={icon} alt="img" />
-          <div className="icon-name">Non Fiction</div>
+          <div className="icon-name">Fiction</div>
           <div className="items">355 Items</div>
         </div>
         <div className="type">
@@ -41,17 +41,17 @@ const Home = () => {
         </div>
         <div className="type">
           <img src={icon} alt="img" />
-          <div className="icon-name">Non Fiction</div>
+          <div className="icon-name">Fantasy</div>
           <div className="items">355 Items</div>
         </div>
         <div className="type">
           <img src={icon} alt="img" />
-          <div className="icon-name">Non Fiction</div>
+          <div className="icon-name">Romance</div>
           <div className="items">355 Items</div>
         </div>
         <div className="type">
           <img src={icon} alt="img" />
-          <div className="icon-name">Non Fiction</div>
+          <div className="icon-name">Biography</div>
           <div className="items">355 Items</div>
         </div>
         </div>

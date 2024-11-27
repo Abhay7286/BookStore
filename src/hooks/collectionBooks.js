@@ -3,46 +3,41 @@ import toast from "react-hot-toast";
 
 const bookData = () => {
   const [loading, setLoading] = useState(false);
-  const [harryPotter, setHarryPotter] = useState([]);
   const [romance, setRomance] = useState([]);
   const [thriller, setThriller] = useState([]);
   const [fantasy, setFantasy] = useState([]);
   const [bio, setBio] = useState([]);
-  const [selfHelp, setSelfHelp] = useState([]);
-  const [children, setChildren] = useState([]);
+  const [history, setHistory] = useState([]);
+  const [mystery, setMystery] = useState([]);
 
   useEffect(() => {
     const fetchBooks = async () => {
       setLoading(true);
-      const API_KEY = "AIzaSyBGr0yc3hwMzyKN8hLO5bFUnMrSx8JlSyw"; 
       try {
 
-        const [harryPotterRes, romanceRes, thrillerRes, fantasyRes, bioRes, selfHelpRes, childrenRes] = await Promise.all([
-          fetch(`https://www.googleapis.com/books/v1/volumes?q=harry+potter&key=${API_KEY}`),
-          fetch(`https://www.googleapis.com/books/v1/volumes?q=romance&key=${API_KEY}`),
-          fetch(`https://www.googleapis.com/books/v1/volumes?q=thriller&key=${API_KEY}`),
-          fetch(`https://www.googleapis.com/books/v1/volumes?q=fantasy&key=${API_KEY}`),
-          fetch(`https://www.googleapis.com/books/v1/volumes?q=biography&key=${API_KEY}`),
-          fetch(`https://www.googleapis.com/books/v1/volumes?q=self-help&key=${API_KEY}`),
-          fetch(`https://www.googleapis.com/books/v1/volumes?q=children&key=${API_KEY}`),
+        const [ romanceRes, thrillerRes, fantasyRes, bioRes, historyRes, mysteryRes] = await Promise.all([
+          fetch(`https://www.googleapis.com/books/v1/volumes?q=romance&maxResults=12`),
+          fetch(`https://www.googleapis.com/books/v1/volumes?q=thriller&maxResults=12`),
+          fetch(`https://www.googleapis.com/books/v1/volumes?q=fantasy&maxResults=12`),
+          fetch(`https://www.googleapis.com/books/v1/volumes?q=biography&maxResults=12`),
+          fetch(`https://www.googleapis.com/books/v1/volumes?q=history&maxResults=12`),
+          fetch(`https://www.googleapis.com/books/v1/volumes?q=mystery&maxResults=12`),
         ]);
         
-        const harryPotterData = await harryPotterRes.json();
+
         const romanceData = await romanceRes.json();
         const thrillerData = await thrillerRes.json();
         const fantasyData = await fantasyRes.json();
         const bioData = await bioRes.json();
-        const selfHelpData = await selfHelpRes.json();
-        const childrenData = await childrenRes.json();
+        const historyData = await historyRes.json();
+        const mysteryData = await mysteryRes.json();
 
-        setBestBooks(bestBooksData.items);
-        setHarryPotter(harryPotterData.items);
         setRomance(romanceData.items);
         setThriller(thrillerData.items);
-        setSelfHelp(selfHelpData.items);
-        setBio(bioData.items);
         setFantasy(fantasyData.items);
-        setChildren(childrenData.items);
+        setBio(bioData.items);
+        setHistory(historyData.items);
+        setMystery(mysteryData.items);
         
       } catch (error) {
         console.error("Error fetching books:", error);
@@ -55,7 +50,7 @@ const bookData = () => {
     fetchBooks();
   }, []);
 
-  return { loading,harryPotter,romance,thriller,fantasy,bio,selfHelp,children };
+  return { loading,romance,thriller,fantasy,bio,history,mystery };
 };
 
 export default bookData;
