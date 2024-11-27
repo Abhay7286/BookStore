@@ -1,4 +1,4 @@
-import {React,useState} from "react";
+import React from "react";
 import Card from "../../components/Card/Card.jsx";
 import "./Home.css";
 import icon from "../../assets/icon1.png"
@@ -8,10 +8,9 @@ import loginimg from '../../assets/loginimg.jpg';
 import rocket from '../../assets/rocket.webp';
 import Reviews from "./Reviews";
 import Article from "./Article";
-import Romance from "../../components/Collections/Romance.jsx";
+import Popular from "../../components/Collections/Popular.jsx";
 
 const Home = () => {
-  const [gen, setGen] = useState("Romance");
   
   return (
     <>
@@ -83,27 +82,7 @@ const Home = () => {
       </div>
 
       <div className="popular-collection">
-        <div className="popular-head">
-          <h1>Popular Collection</h1>
-          <div className="links">
-                <li onClick={()=>{setGen("Romance")}}><Link>Romance {gen=="Romance"?<hr/>:''}</Link></li>
-                <li onClick={()=>{setGen("Mystery")}}><Link>Mystery {gen=="Mystery"?<hr/>:''}</Link></li>
-                <li onClick={()=>{setGen("Thriller")}}><Link>Thriller {gen=="Thriller"?<hr/>:''}</Link></li>
-                <li onClick={()=>{setGen("fantasy")}}><Link>fantasy{gen=="fantasy"?  <hr/>:''}</Link></li>
-                <li onClick={()=>{setGen("Historical")}}><Link>Historical{gen=="Historical"?  <hr/>:''}</Link></li>
-                <li><Link>View all &rarr; </Link></li>
-                
-          </div>
-        </div>
-
-        <div className="popular-section">
-          {gen === "Romance" && <Romance />}
-          {gen === "Mystery" && <Romance />}
-          {gen === "Thriller" && <Romance />}
-          {gen === "fantasy" && <Romance />}
-          {gen === "Historical" && <Romance />}
-        </div>
-
+       <Popular/>
       </div>
 
       <div className="discoverContainer">

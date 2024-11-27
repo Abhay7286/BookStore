@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import collectionBooks from "../../hooks/collectionBooks.js";
 
-const Romance = () => {
-  const { romance, loading } = collectionBooks();
+const Fantasy = () => {
+  const { fantasy, loading } = collectionBooks();
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    setBooks(romance);
-  }, [romance]);
+    setBooks(fantasy);
+  }, [fantasy]);
 
   return (
     <>
@@ -24,4 +24,4 @@ const Romance = () => {
   );
 };
 
-export default Romance;
+export default Fantasy;

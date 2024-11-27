@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import collectionBooks from "../../hooks/collectionBooks.js";
+import collectionBooks from "../../hooks/collectionBooks.js";;
 
 const Romance = () => {
   const { romance, loading } = collectionBooks();
