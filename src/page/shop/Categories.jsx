@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./Categories.css";
 import "../../components/Card/Card.css";
 import ikagai from "../../assets/ikagai.jpg";
-import bookData from "../../hooks/bookData.js";
+import collectionBooks from "../../hooks/collectionBooks.js";
 
 const Categories = () => {
-  const { bestBooks: fetchedBooks, loading } = bookData();
+  const { bio: fetchedBooks, loading } = collectionBooks();
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
