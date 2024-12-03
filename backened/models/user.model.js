@@ -25,9 +25,9 @@ const userSchema = new mongoose.Schema(
           type: Number,
           default: 1,
         },
-        product: {
+        book: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Product",
+          ref: "Book",
         },
       },
     ],
