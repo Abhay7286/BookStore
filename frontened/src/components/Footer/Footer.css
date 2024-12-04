@@ -1,0 +1,72 @@
+.foot-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #F1F5FF;
+  }
+  
+  .about-us {
+    flex: 1;
+    margin: 20px;
+  }
+  
+  .social-media ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+  
+  .social-media li {
+    margin-right: 10px;
+  }
+  
+  .social-media a {
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .newsletter {
+    margin-top: 10px;
+  }
+  
+  .newsletter input {
+    padding: 10px;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+  
+  .newsletter button {
+    padding: 10px;
+    border: none;
+    background-color: #333;
+    color: white;
+    border-radius: 4px;
+  }
+  
+  .footer-links {
+    display: flex;
+    flex: 2;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  input:focus {
+    outline: none;
+    border: none;
+}
