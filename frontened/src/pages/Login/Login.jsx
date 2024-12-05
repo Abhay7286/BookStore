@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import { Mail, Lock, Loader, LogIn } from "lucide-react";
 import { motion } from "framer-motion";
 import "./Login.css";
+import { useUserStore } from "../../store/useUserStore.js";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, loading } = useUserStore();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", { email, password });
+    login( email, password );
   };
-
-  const loading = false;
 
   return (
     <div className="login-container">

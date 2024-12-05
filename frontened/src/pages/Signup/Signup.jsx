@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import { Mail, Lock, User, UserPlus, Loader } from "lucide-react";
 import { motion } from "framer-motion";
 import "./Signup.css";
+import { useUserStore } from "../../store/useUserStore.js";
 
 const Signup = () => {
+
+  const {signup,loading} = useUserStore();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,9 +19,9 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+    signup(formData);
+    
   };
-
-  const loading = false;
 
   return (
     <div className="signup-container">

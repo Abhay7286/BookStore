@@ -1,6 +1,6 @@
-import User from "../models/User.js";
-import Book from "../models/Book.js";
-import Order from "../models/Order.js";
+import User from "../models/user.model.js";
+import Book from "../models/book.model.js";
+import Order from "../models/order.model.js";
 
 export const getAnalyticsData = async (req, res) => {
   const totalUsers = await User.countDocument();
@@ -71,7 +71,6 @@ export const getDailySalesData = async (startData, endData) => {
   }
 };
 
-
 function getDatesInRange(startDate, endDate) {
     const dates = [];
     let currentDate = new Date(startDate);
@@ -85,5 +84,5 @@ function getDatesInRange(startDate, endDate) {
     }
   
     return dates;
-  }
+};
   

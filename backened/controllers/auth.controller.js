@@ -1,4 +1,4 @@
-import {redis} from "../lib/redis.js";
+import redis from "../lib/redis.js";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 
@@ -103,6 +103,7 @@ export const logout = async (req, res) => {
     res.status(500).json({message: error.message});
    }
 };
+
 
 export const refreshToken = async (req, res) => {
     try {
