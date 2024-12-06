@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login.jsx";
 import Signup from "./pages/Signup/Signup.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import Admin from "./pages/Admin/Admin.jsx";
 import { Toaster } from "react-hot-toast";
 import { useUserStore } from "./store/useUserStore.js";
 import { useEffect } from "react";
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/' />}/>
 				<Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
+        <Route path='/secret-dashboard' element={user?.role === 'admin' ? <Admin /> : <Navigate to='/login' />} />
       </Routes>
       <Footer/>
       <Toaster />

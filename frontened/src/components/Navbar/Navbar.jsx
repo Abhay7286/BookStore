@@ -47,7 +47,7 @@ const Navbar = () => {
             </button>
             {isAdmin && (
               <button className="dashboard">
-                <Link to="/dashboard">
+                <Link to="/secret-dashboard">
                   <Lock size={20} /> <span>Dashboard</span>
                 </Link>
               </button>
