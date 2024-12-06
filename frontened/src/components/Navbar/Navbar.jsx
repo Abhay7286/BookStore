@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { ShoppingCart, LogIn, Lock, LogOut, UserPlus } from "lucide-react";
+import { useUserStore } from "../../store/useUserStore.js";
 
 const Navbar = () => {
   const location = useLocation();
   const [menu, setMenu] = useState(location.pathname);
-  let isAdmin = true;
-  let user = false;
+  let {user,logout} = useUserStore();
+  let isAdmin = user?.role === "admin";
 
   // Update the active menu whenever the location changes
   useEffect(() => {
@@ -34,7 +35,7 @@ const Navbar = () => {
       <div className="nav-login-cart">
         {user ? (
           <>
-            <button>
+            <button onClick={logout}>
               <Link to="/logout">
                 <LogOut size={20} /> <span>Logout</span>
               </Link>
@@ -53,7 +54,7 @@ const Navbar = () => {
             )}
           </>
         ) : (
-          <div>
+          <>
             <button>
               <Link to="/login">
                 <LogIn size={20} /> <span>Login</span>
@@ -64,7 +65,7 @@ const Navbar = () => {
                 <UserPlus size={20} /> <span>Signup</span>
               </Link>
             </button>
-          </div>
+          </>
         )}
       </div>
     </div>

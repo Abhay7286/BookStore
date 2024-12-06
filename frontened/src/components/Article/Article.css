@@ -1,0 +1,85 @@
+/* General Styling for Article Section */
+.article {
+    text-align: center;
+    margin-top: 2em;
+    padding: 1em; /* Add padding for smaller devices */
+    background-color: #F9F9F9; /* Subtle background for contrast */
+}
+
+/* Container for Articles */
+.articleContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allows articles to wrap on smaller screens */
+    justify-content: center; /* Centers articles */
+    gap: 2em; /* Add spacing between articles */
+    margin-top: 2rem;
+    padding: 0 1em;
+}
+
+/* Individual Article Box */
+.articlebox {
+    max-width: 21rem;
+    background-color: #FFFFFF;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.articlebox:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Article Image */
+.articlebox > img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures images look consistent */
+    border-bottom: 4px solid #FDEFCE; /* Add a decorative border */
+}
+
+/* Article Text */
+.articlebox > p {
+    font-size: 1rem;
+    color: #333;
+    padding: 1em;
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+
+/* Tablet Devices */
+@media (max-width: 768px) {
+    .articleContainer {
+        gap: 1.5em;
+    }
+
+    .articlebox {
+        max-width: 90%; /* Reduce width for better fit */
+    }
+
+    .articlebox > p {
+        font-size: 0.95rem; /* Slightly smaller text for compact screens */
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    .articleContainer {
+        flex-direction: column; /* Stack articles vertically */
+        align-items: center; /* Center align for consistency */
+        gap: 1em;
+    }
+
+    .articlebox {
+        width: 100%; /* Use full width for mobile */
+        max-width: 20rem;
+    }
+
+    .articlebox > p {
+        font-size: 0.9rem; /* Adjust text size for readability */
+    }
+}

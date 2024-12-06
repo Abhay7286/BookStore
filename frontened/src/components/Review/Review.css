@@ -1,0 +1,147 @@
+.reviewsContainer {
+    background-color: #F1F5FF;
+    padding: 3em 1em;
+}
+
+/* Reviews Header */
+.reviews-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 0 1em;
+}
+
+/* Navigation Buttons */
+.button {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.button > button:hover {
+    background-color: #353535;
+    color: white;
+}
+
+/* Reviews Card */
+.reviews-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    text-align: center;
+    margin: 3em auto;
+    background-color: #FDEFCE;
+    padding: 2em;
+    border-radius: 2em;
+    max-width: 90%;
+}
+
+.person > img {
+    width: 10em;
+    max-width: 100%;
+}
+
+.review-content {
+    background-color: #FFFFFF;
+    padding: 2em;
+    border-radius: 2em;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Review Stars */
+.star {
+    display: flex;
+    align-items: center;
+}
+
+/* Reviewer Info */
+.userimg {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+}
+
+.review-user {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.readimg {
+    width: 6em;
+    margin-top: 1em;
+}
+
+.review-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .reviews-head {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .reviews-card {
+        flex-direction: column;
+        gap: 2em;
+        padding: 1.5em;
+    }
+
+    .person > img {
+        width: 8em;
+    }
+
+    .review-content {
+        padding: 1.5em;
+    }
+
+    .review-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .readimg {
+        width: 5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .reviews-head h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .reviews-card {
+        padding: 1em;
+    }
+
+    .review-content {
+        padding: 1em;
+    }
+
+    .person > img {
+        width: 6em;
+    }
+
+    .readimg {
+        width: 4em;
+    }
+
+    .button > button {
+        font-size: 0.8rem;
+        padding: 0.5em;
+    }
+}

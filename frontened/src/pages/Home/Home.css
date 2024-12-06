@@ -1,0 +1,233 @@
+/* main */
+.main{
+    height: 70vh;
+    background-image: url("../../assets/homebackground.jpg");
+    background-color: #BDBDEF;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-x: -20em;
+    background-size: cover;
+    display: flex;
+    text-align: center;
+    width: 100vw;
+ }
+ .maintext{
+    width: 28em;
+    position: absolute;
+    right: 4em;
+    top: 10em;
+    text-align: center;
+}
+.search-bar{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.search-bar>input{
+    padding: 13px;
+    border-radius: 5px;
+    border: none;
+    width: 32em;
+    margin-top: 1em;
+}
+.searchbtn{
+    background-color: #312BD8;
+    color: white;
+    position: absolute;
+    left: 24em;
+    margin-top: 1em;
+}
+.Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    gap: 2em;
+}
+.cardContent{
+    margin-top: 8em;
+}
+span{
+    color: #784e00ab;
+}
+.title{
+    text-align: center;
+}
+.type{
+    box-shadow: -2px 7px 14px 8px whitesmoke;
+    width: 6em;
+    border-radius: 16px;
+    padding: 35px;
+    text-align: center;
+}
+.items{
+    color: #312BD8;
+}
+.bookContainer{
+    text-align: center;
+    margin: 1em 0;
+}
+.typeContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2em;
+}
+.type>img{
+    width: 1.8em;
+}
+.nature>img{
+    width: 3em;
+}
+.store-img{
+    width: 25em;
+}
+hr{
+    width: 100%;
+    height: 3px;
+    background-color: black;
+}
+.arrivalhead{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 8em 0 4em 0;
+}
+.arrivalhead > h1{
+    width: 25%;
+}
+.arrivalhead > p{
+    width: 60%;
+    font-size: 17px;
+    font-weight: 400;
+}
+.arrivalContainer{
+    text-align: center;
+}
+.links{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1.5em;
+}
+.view{
+    font-size: 15px;
+    padding: 8px;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    margin: 4em 0 0 0;
+    background-color: black;
+}
+.view>a{
+    color: white;
+}
+.store{
+    display: flex;
+    align-items: center;
+    gap: 5em;
+    padding: 0 2em;
+    height: 60vh;
+    margin: 2em 0;
+    justify-content: center;
+    background-color: black;
+}
+.about{
+    text-align: center;
+    height: 30vh;
+    width: 45%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background: rgb(177, 101, 7);
+    border-radius: 20px;
+    padding: 2em 1.2em;
+}
+.about>p{
+    font-weight: 500;
+}
+.fictionContainer{
+    text-align: center;
+    margin-top: 2em;
+}
+.app-link>ul{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.list>ul{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.policy>ul{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.social-media>ul{
+    gap: 15px;
+    margin: 12px 0px 12px 0px;
+}
+
+.popular-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3em 5em;
+}
+.popular-section{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 1em;
+    align-items: center;
+    padding: 5em;
+}
+.book>img{
+    width: 7em;
+}
+.popular-collection{
+    background-color: #F1F5FF;
+}
+.description {
+    display: flex;
+    flex-direction: column;
+    padding: 0 3px;
+}
+.price{
+    color: #312BD8;
+}
+.discover-img > img{
+    width: 20em;
+}
+.discoverContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2em 8em;
+}
+.boxes{
+    display: flex;
+    align-items: center;
+    gap: 1.1em;
+    margin-top: 1em;
+}
+.box{
+    background-color: #312BD8;
+    color: white;
+    padding: 1em;
+    border-radius: 10px;
+}
+.readerCard{
+    background-color: white;
+    color: black;
+    box-shadow: -1px 1px 1px -1px;
+    padding: 1em;
+    position: absolute;
+    top: 100em;
+}
+.goodread{
+    text-align: center;
+    margin: 3em 0;
+}

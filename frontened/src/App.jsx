@@ -7,14 +7,16 @@ import Footer from "./components/Footer/Footer.jsx";
 import { Toaster } from "react-hot-toast";
 import { useUserStore } from "./store/useUserStore.js";
 import { useEffect } from "react";
+import Spinner from "./components/spinner/spinner.jsx";
 
 function App() {
   const {user,checkAuth,checkingAuth} = useUserStore();
-  console.log(user,checkingAuth);
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth])
+
+  if (checkingAuth) return <Spinner />
   
   return (
     <div>
