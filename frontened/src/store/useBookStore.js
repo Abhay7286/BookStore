@@ -23,5 +23,55 @@ export const useBookStore = create((set,get) => ({
             toast.error(error.response?.data?.message || "Something went wrong");
             set({loading: false});
         }
-    }
+    },
+    fetchAllBooks: async () => {
+       set({loading: true});
+       try {
+        const res = await axios.get("/book");
+        set({books: res?.data?.books, loading: false});
+       } catch (error) {
+        toast.error(error.response?.data?.message || "Something went wrong");
+        set({loading: false});
+       } 
+    },
+
+    deleteBook : async(bookId) =>{
+        set({loading: true});
+        try {
+            await axios.delete(`/book/${bookId}`);
+
+            set((prevState) => ({
+                books: prevState.books.filter((book)=> book._id !== bookId),
+                loading: false
+            }))
+            
+        } catch (error) {
+            set({loading: false});
+            toast.error(error.response?.data?.message || "Something went wrong");
+        }
+    },
+
+    toggleFeaturedBook: async (bookId) => {
+        set({ loading: true }); 
+        try {
+          const response = await axios.patch(`/book/${bookId}`);
+      
+          set((prevState) => ({
+            books: prevState.books.map((book) =>
+              book._id === bookId
+                ? { ...book, isFeatured: response.data.isFeatured } 
+                : book
+            ),
+            loading: false, 
+          }));
+      
+          toast.success("Book feature status updated!");
+        } catch (error) {
+          toast.error(
+            error.response?.data?.message || "Failed to update feature status"
+          );
+          set({ loading: false });
+        }
+      },
+      
 }))

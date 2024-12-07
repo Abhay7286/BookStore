@@ -28,13 +28,20 @@ const CreateBookForm = () => {
     price: 0,
   });
 
-  const {loading, addNewBook} = useBookStore();
+  const { loading, addNewBook } = useBookStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await addNewBook(newBook);
-      setnewBook({title:"",author:"",description:"",genre:"",image:"",price:0});
+      setnewBook({
+        title: "",
+        author: "",
+        description: "",
+        genre: "",
+        image: "",
+        price: 0,
+      });
     } catch (error) {
       console.log("error in adding new book", error.message);
     }
@@ -109,7 +116,6 @@ const CreateBookForm = () => {
               onChange={(e) =>
                 setnewBook({ ...newBook, genre: e.target.value })
               }
-              required
             >
               {genres.map((genre) => (
                 <option key={genre} value={genre}>

@@ -1,10 +1,11 @@
 import { BarChart, PlusCircle, ShoppingBasket } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import CreateBookForm from "../../components/CreateBook/CreateBookForm.jsx";
 import BookList from "../../components/BookList/BookList.jsx";
 import AnalyticsTab from "../../components/Analytics/AnalyticsTab.jsx";
-
+import { useBookStore } from "../../store/useBookStore.js";
+import "./Admin.css";
 const Admin = () => {
   const tabs = [
     { id: "create", icon: <PlusCircle />, label: "Create Product" },
@@ -13,6 +14,11 @@ const Admin = () => {
   ];
 
   const [activeTab, setActiveTab] = useState("create");
+
+  const {fetchAllBooks} = useBookStore();
+  useEffect(() => {
+    fetchAllBooks();
+  }, [fetchAllBooks]);
 
   return (
     <>

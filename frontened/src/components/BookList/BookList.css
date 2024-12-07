@@ -1,0 +1,140 @@
+/* Wrapper for motion animation */
+.book-list-wrapper {
+  margin: 20px;
+}
+
+/* Container styles */
+.book-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+/* Table styles */
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 16px;
+}
+
+.book-table-header-row {
+  background-color: #007bff;
+  color: white;
+}
+
+.book-table-header {
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.book-table-row:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.book-table-cell {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+/* Image styling */
+.book-image {
+  width: 60px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.book-image:hover {
+  transform: scale(1.1);
+}
+
+/* Actions cell */
+.book-actions-cell {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Button styles */
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #0056b3;
+}
+
+.delete-button {
+  background-color: #dc3545;
+}
+
+.delete-button:hover {
+  background-color: #a71d2a;
+}
+
+.feature-button {
+  background-color: #28a745;
+}
+
+.feature-button:hover {
+  background-color: #1e7e34;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .book-list-container {
+    padding: 10px;
+  }
+
+  .book-table {
+    font-size: 14px;
+  }
+
+  .action-button {
+    padding: 6px;
+  }
+
+  .book-image {
+    width: 50px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-list-container {
+    padding: 5px;
+  }
+
+  .book-table {
+    font-size: 12px;
+  }
+
+  .action-button {
+    padding: 4px;
+  }
+
+  .book-image {
+    width: 40px;
+    height: 60px;
+  }
+}

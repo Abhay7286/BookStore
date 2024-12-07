@@ -26,6 +26,10 @@ const bookSchema = new mongoose.Schema(
             type: String,
             required: [true, "image is required"],
         },
+        isFeatured: {
+			type: Boolean,
+			default: false,
+		},
     },    
     { timestamps: true }
 );

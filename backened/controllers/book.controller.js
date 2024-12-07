@@ -83,7 +83,7 @@ export const deleteBook = async (req,res) => {
 
          }
 
-         await book.findByIdanddelete(req.params.id);
+         await Book.findByIdAndDelete(req.params.id);
 
          res.status(200).json({message: "Book deleted successfully"});
     } catch (error) {
