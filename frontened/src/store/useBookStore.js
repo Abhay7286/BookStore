@@ -79,9 +79,7 @@ export const useBookStore = create((set,get) => ({
         set({ loading: true });
         try {
           const res = await axios.get("/book/featured");
-          console.log("API Response:", res.data); // Log full response
           set({ featuredBooks: res?.data, loading: false });
-          toast.success("Featured books fetched successfully!");
         } catch (error) {
           console.error("Error fetching books:", error.response);
           toast.error(error.response?.data?.message || "Something went wrong");
@@ -89,5 +87,19 @@ export const useBookStore = create((set,get) => ({
         }
         
       },
+
+      fetchBooksByGenre: async (genre) => {
+        set({ loading: true });
+        try {
+          const res = await axios.get(`/book/genre/${genre}`);
+          set({books: res?.data , loading: false});
+        } catch (error) {
+          console.error("Error fetching books:", error.response);
+          toast.error(error.response?.data?.message || "Something went wrong");
+          set({ loading: false });
+        }
+        
+      },
+      
       
 }))

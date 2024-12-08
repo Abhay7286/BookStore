@@ -114,9 +114,10 @@ const CreateBookForm = () => {
               name="genre"
               value={newBook.genre}
               onChange={(e) =>
-                setnewBook({ ...newBook, genre: e.target.value })
+                setnewBook({ ...newBook, genre: e.target.value})
               }
             >
+              <option value="">Select Genre</option>
               {genres.map((genre) => (
                 <option key={genre} value={genre}>
                   {genre}

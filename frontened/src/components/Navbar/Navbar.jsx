@@ -30,6 +30,14 @@ const Navbar = () => {
             Home
           </Link>
         </li>
+        <li
+          onClick={() => setMenu("/genre")}
+          className={menu === "/genre" ? "active" : ""}
+        >
+          <Link to="/genre" aria-current={menu === "/genre" ? "page" : undefined}>
+            BrowseByGenres
+          </Link>
+        </li>
       </ul>
 
       <div className="nav-login-cart">

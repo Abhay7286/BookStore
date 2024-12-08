@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import icon from '../../assets/icon1.png';
 import './Home.css';
 import loginimg from '../../assets/loginimg.jpg';
 import rocket from '../../assets/rocket.webp';
@@ -8,6 +7,7 @@ import Article from '../../components/Article/Article.jsx';
 import Card from '../../components/Card/Card.jsx';
 import { useBookStore } from '../../store/useBookStore.js';
 import { useEffect } from 'react';
+import BrowseByGenre from '../../components/BrowseByGenres/BrowseByGenre.jsx';
 
 const Home = () => {
   const {fetchFeaturedBooks} = useBookStore();
@@ -30,46 +30,8 @@ const Home = () => {
       </div>
 
       <div className="bookContainer">
-        <h1>Browse by <span>Book Types</span></h1>
-        <div className="typeContainer">
-          <div className="type">
-            <Link to="/fiction">
-              <img src={icon} alt="img" />
-              <div className="icon-name">Fiction</div>
-              <div className="items">355 Items</div>
-            </Link>
-          </div>
-          <div className="type">
-            <Link to="/fiction">
-              <img src={icon} alt="img" />
-              <div className="icon-name">Fiction</div>
-              <div className="items">355 Items</div>
-            </Link>
-          </div>
-          <div className="type">
-            <Link to="/fiction">
-              <img src={icon} alt="img" />
-              <div className="icon-name">Fiction</div>
-              <div className="items">355 Items</div>
-            </Link>
-          </div>
-          <div className="type">
-            <Link to="/fiction">
-              <img src={icon} alt="img" />
-              <div className="icon-name">Fiction</div>
-              <div className="items">355 Items</div>
-            </Link>
-          </div>
-          <div className="type">
-            <Link to="/fiction">
-              <img src={icon} alt="img" />
-              <div className="icon-name">Fiction</div>
-              <div className="items">355 Items</div>
-            </Link>
-          </div>
-
-
-        </div>
+        <h1>Browse by <span>Popular Genres</span></h1>
+        <BrowseByGenre />
       </div>
 
       <div className="arrivalContainer">

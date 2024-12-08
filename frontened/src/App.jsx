@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { useUserStore } from "./store/useUserStore.js";
 import { useEffect } from "react";
 import Spinner from "./components/spinner/spinner.jsx";
+import Genre from "./pages/Category/Genre.jsx";
 
 function App() {
   const {user,checkAuth,checkingAuth} = useUserStore();
@@ -24,6 +25,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/genre/:genre" element={<Genre />} />
+        <Route path="/genre" element={<Genre />} />
         <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/' />}/>
 				<Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
         <Route path='/secret-dashboard' element={user?.role === 'admin' ? <Admin /> : <Navigate to='/login' />} />
