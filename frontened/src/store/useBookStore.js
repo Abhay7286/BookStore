@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 
 export const useBookStore = create((set,get) => ({
     books:[],
+    featuredBooks:[],
     loading: false,
 
     setBooks: (books) => set({books}),
@@ -72,6 +73,21 @@ export const useBookStore = create((set,get) => ({
           );
           set({ loading: false });
         }
+      },
+
+      fetchFeaturedBooks: async () => {
+        set({ loading: true });
+        try {
+          const res = await axios.get("/book/featured");
+          console.log("API Response:", res.data); // Log full response
+          set({ featuredBooks: res?.data, loading: false });
+          toast.success("Featured books fetched successfully!");
+        } catch (error) {
+          console.error("Error fetching books:", error.response);
+          toast.error(error.response?.data?.message || "Something went wrong");
+          set({ loading: false });
+        }
+        
       },
       
 }))

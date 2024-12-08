@@ -1,44 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Card.css";
-import collectionBooks from "../../hooks/collectionBooks.js";
+import { useBookStore } from "../../store/useBookStore.js";
 
 const Card = () => {
-  const { bio, loading } = collectionBooks();
-
-  const [books, setbooks] = useState([]);
-
-  useEffect(() => {
-    if (bio) setbooks(bio);
-  }, [bio]);
+  const { featuredBooks } = useBookStore();
 
   return (
-    <>
-      {loading ? (
-        <p>Loading books...</p>
-      ) : books.length > 0 ? (
-        books.map((book) => (
-          <div className="card" key={book.id}>
-            <img
-              src={book.volumeInfo.imageLinks?.thumbnail}
-              alt={book.volumeInfo.title}
+    <div className="card-container">
+      {featuredBooks.map((book) => (
+        <div className="card" key={book._id}> 
+          <svg className="card-svg" viewBox="0 0 375 283">
+            <rect
+              x="159.52"
+              y="175"
+              width="152"
+              height="152"
+              rx="8"
+              transform="rotate(-45 159.52 175)"
+              fill="white"
             />
-            <div className="card-content">
-              <div className="title">{book.volumeInfo.title}</div>
-              <div className="price">$99.99</div>
-              <div className="book-name">{book.title}</div>
-              <div className="card-buttons">
-                <button className="card-btn">
-                  {book.volumeInfo.categories}
-                </button>
-                <button className="cart-btn">Add to Cart</button>
-              </div>
+            <rect
+              y="107.48"
+              width="152"
+              height="152"
+              rx="8"
+              transform="rotate(-45 0 107.48)"
+              fill="white"
+            />
+          </svg>
+          <div className="card-image-container">
+            <div className="card-shadow"></div>
+            <img
+              className="card-image"
+              src={book.image || "default-image-url.png"} 
+              alt={book.title || "Book Cover"}
+            />
+          </div>
+          <div className="card-text">
+            <span className="card-title">{book.title}</span>
+            <div className="card-details">
+              <span className="card-author">{book.author}</span>
+              <span className="card-price">${book.price || "0.00"}</span>
+              <span className="card-genre">{book.genre}</span>
+            </div>
+            <div className="card-button">
+              <button className="view-details">View Details</button>
+              <button className="add-to-cart">Add to Cart</button>
             </div>
           </div>
-        ))
-      ) : (
-        <p>No new arrival books available.</p>
-      )}
-    </>
+        </div>
+      ))}
+    </div>
   );
 };
 
