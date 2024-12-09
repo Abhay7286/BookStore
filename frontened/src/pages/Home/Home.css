@@ -17,25 +17,6 @@
     top: 10em;
     text-align: center;
 }
-.search-bar{
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.search-bar>input{
-    padding: 13px;
-    border-radius: 5px;
-    border: none;
-    width: 32em;
-    margin-top: 1em;
-}
-.searchbtn{
-    background-color: #312BD8;
-    color: white;
-    position: absolute;
-    left: 24em;
-    margin-top: 1em;
-}
 .Container{
     display: flex;
     justify-content: center;
@@ -206,6 +187,7 @@ hr{
     padding: 1em;
     position: absolute;
     top: 100em;
+    display: none;
 }
 .goodread{
     text-align: center;

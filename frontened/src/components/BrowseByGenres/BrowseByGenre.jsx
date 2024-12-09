@@ -15,6 +15,10 @@ const genres = [
   "Thriller",
   "Poetry", 
   "Biography",
+  "Historical",
+  "Philosophy",
+  "Adventure",
+  "Science-fiction",
 ];
 const BrowseByGenre = () => {
 

@@ -10,22 +10,18 @@ import { useEffect } from 'react';
 import BrowseByGenre from '../../components/BrowseByGenres/BrowseByGenre.jsx';
 
 const Home = () => {
-  const {fetchFeaturedBooks} = useBookStore();
-  
+  const { fetchFeaturedBooks } = useBookStore();
+
   useEffect(() => {
     fetchFeaturedBooks();
   }, [fetchFeaturedBooks]);
-  
+
   return (
     <>
       <div className="main">
         <div className="maintext">
           <h1>Best Place To Find Your <span>Favourite Book</span></h1>
           <p>Discover millions of book title with the best price offered here. Available for worldwide shipping and payment.</p>
-          <div className="search-bar">
-            <input type="search" placeholder='Search here' />
-            <button type="submit" className="searchbtn">search</button>
-          </div>
         </div>
       </div>
 

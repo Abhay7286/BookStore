@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { ShoppingCart, LogIn, Lock, LogOut, UserPlus } from "lucide-react";
 import { useUserStore } from "../../store/useUserStore.js";
+import SearchBar from "../SearchBar/SearchBar.jsx";
 
 const Navbar = () => {
   const location = useLocation();
@@ -38,6 +39,16 @@ const Navbar = () => {
             BrowseByGenres
           </Link>
         </li>
+        <li
+          onClick={() => setMenu("/genre")}
+          className={menu === "/genre" ? "active" : ""}
+        >
+          <Link to="/genre" aria-current={menu === "/genre" ? "page" : undefined}>
+            BrowseByAuthor
+          </Link>
+        </li>
+
+        <SearchBar/>
       </ul>
 
       <div className="nav-login-cart">

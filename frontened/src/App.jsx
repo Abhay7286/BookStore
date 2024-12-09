@@ -9,7 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { useUserStore } from "./store/useUserStore.js";
 import { useEffect } from "react";
 import Spinner from "./components/spinner/spinner.jsx";
-import Genre from "./pages/Category/Genre.jsx";
+import Genre from "./pages/Genre/Genre.jsx";
 
 function App() {
   const {user,checkAuth,checkingAuth} = useUserStore();

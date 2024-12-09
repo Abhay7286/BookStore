@@ -1,0 +1,147 @@
+.genre-card-container {
+    display: grid;
+    justify-content: center;
+    gap: 24px;
+    padding: 16px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  
+  .genre-card {
+    position: relative;
+    background-color: #BEBDF0;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 320px; /* Ensures consistent size */
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    margin: 16px;
+    height: 70vh;
+  }
+  
+  .genre-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .genre-card-svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 16px;
+    transform: scale(1.5);
+    opacity: 0.1;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .genre-card:hover .genre-card-svg {
+    transform: scale(1.65);
+  }
+  
+  .genre-card-image-container {
+    position: relative;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .genre-card-image-container img {
+    width: 120px;
+    height: 167px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .genre-card:hover .genre-card-image-container {
+    transform: scale(1.1);
+  }
+  
+  .genre-card:hover img {
+    transform: scale(1.2);
+  }
+  
+  .genre-card-shadow {
+    position: absolute;
+    width: 192px;
+    height: 192px;
+    bottom: 0;
+    left: 0;
+    -webkit-mask-image: radial-gradient(
+      closest-side,
+      rgba(0, 0, 0, 0) 94%,
+      rgba(0, 0, 0, 1)
+    );
+    background: radial-gradient(black, transparent 60%);
+    transform: rotate3d(0, 0, 1, 20deg) scale(1, 0.6);
+    opacity: 0.2;
+  }
+  
+  /* Text section */
+  .genre-card-text {
+    position: relative;
+    padding: 16px;
+    padding-bottom: 24px;
+  }
+  
+  .genre-card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: white;
+    display: block;
+  }
+  
+  .genre-card-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  
+  .genre-card-author,
+  .genre-card-genre {
+    color: white;
+    font-size: 0.875rem;
+  }
+  
+  .genre-card-price {
+    background-color: white;
+    color: #BEBDF0;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .genre-card-price span {
+    font-size: 0.75rem;
+    margin-left: 4px;
+  }
+  
+  .genre-card-button {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  
+  .add-to-cart,
+  .view-details {
+    font-size: 0.875rem;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: #BEBDF0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .add-to-cart:hover,
+  .view-details:hover {
+    background-color: #BEBDF0;
+  }
+  
+  
+  

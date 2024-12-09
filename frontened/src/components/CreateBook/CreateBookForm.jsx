@@ -16,6 +16,11 @@ const genres = [
   "history",
   "poetry",
   "philosophy",
+  "fantasy",
+  "drama",
+  "science-fiction",
+  "adventure",
+  "finance",
 ];
 
 const CreateBookForm = () => {
@@ -114,7 +119,7 @@ const CreateBookForm = () => {
               name="genre"
               value={newBook.genre}
               onChange={(e) =>
-                setnewBook({ ...newBook, genre: e.target.value})
+                setnewBook({ ...newBook, genre: e.target.value.toLowerCase()})
               }
             >
               <option value="">Select Genre</option>
