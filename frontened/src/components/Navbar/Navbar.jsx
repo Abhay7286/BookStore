@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
-import { ShoppingCart, LogIn, Lock, LogOut, UserPlus } from "lucide-react";
+import { ShoppingCart, LogIn, Lock, LogOut, UserPlus,Heart } from "lucide-react";
 import { useUserStore } from "../../store/useUserStore.js";
 import SearchBar from "../SearchBar/SearchBar.jsx";
 
@@ -57,6 +57,11 @@ const Navbar = () => {
             <button onClick={logout}>
               <Link to="/logout">
                 <LogOut size={20} /> <span>Logout</span>
+              </Link>
+            </button>
+            <button className="wishlist">
+              <Link to="/wishlist">
+                <Heart size={20} />
               </Link>
             </button>
             <button className="cart">

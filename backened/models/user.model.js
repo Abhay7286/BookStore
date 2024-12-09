@@ -31,6 +31,14 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+    wishList: [
+      {
+        book: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Book",
+        },
+      },
+    ],
     role: {
       type: String,
       enum: ["customer", "admin"],
@@ -39,7 +47,6 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
 
 //Pre-save hook to hash password before saving to db
 userSchema.pre("save", async function (next) {
@@ -56,7 +63,7 @@ userSchema.pre("save", async function (next) {
 //Method to compare password
 userSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
-}
+};
 
 const User = mongoose.model("User", userSchema);
 export default User;

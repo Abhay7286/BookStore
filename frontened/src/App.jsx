@@ -10,16 +10,17 @@ import { useUserStore } from "./store/useUserStore.js";
 import { useEffect } from "react";
 import Spinner from "./components/spinner/spinner.jsx";
 import Genre from "./pages/Genre/Genre.jsx";
+import WishList from "./pages/WishList/WishList.jsx";
 
 function App() {
-  const {user,checkAuth,checkingAuth} = useUserStore();
+  const { user, checkAuth, checkingAuth } = useUserStore();
 
   useEffect(() => {
     checkAuth();
-  }, [checkAuth])
+  }, [checkAuth]);
 
-  if (checkingAuth) return <Spinner />
-  
+  if (checkingAuth) return <Spinner />;
+
   return (
     <div>
       <Navbar />
@@ -27,14 +28,29 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/genre/:genre" element={<Genre />} />
         <Route path="/genre" element={<Genre />} />
-        <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/' />}/>
-				<Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
-        <Route path='/secret-dashboard' element={user?.role === 'admin' ? <Admin /> : <Navigate to='/login' />} />
+        <Route
+          path="/wishlist"
+          element={!user ? <Login /> : <WishList />}
+        />
+        <Route
+          path="/signup"
+          element={!user ? <Signup /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/login"
+          element={!user ? <Login /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/secret-dashboard"
+          element={
+            user?.role === "admin" ? <Admin /> : <Navigate to="/login" />
+          }
+        />
       </Routes>
-      <Footer/>
+      <Footer />
       <Toaster />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
