@@ -5,9 +5,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css"; // Import Swiper styles
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import { useWishListStore } from "../../store/useWishListStore.js";
 
 const Card = () => {
   const { featuredBooks } = useBookStore();
+  const { toggleWishList } = useWishListStore();
 
   return (
     <div className="card-carousel">
@@ -57,7 +59,7 @@ const Card = () => {
                 </div>
                 <div className="card-button">
                   <button className="view-details">View Details</button>
-                  <button className="add-to-cart">Add to Cart</button>
+                  <button className="add-to-cart" onClick={() => toggleWishList(book._id)}>Add to WishList</button>
                 </div>
               </div>
             </div>

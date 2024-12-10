@@ -30,6 +30,10 @@ const bookSchema = new mongoose.Schema(
 			type: Boolean,
 			default: false,
 		},
+        isWishListed: {
+            type: Boolean,
+            default: false,
+        },
     },    
     { timestamps: true }
 );

@@ -1,9 +1,11 @@
 import React from 'react'
 import './GenreCard.css';
 import { useBookStore } from '../../store/useBookStore';
+import { useWishListStore } from '../../store/useWishListStore';
 
 const Genregenre = () => {
     const {books} = useBookStore();
+    const { toggleWishList } = useWishListStore();
     console.log(books);
     return (
         <div className="genre-card-container">
@@ -45,7 +47,7 @@ const Genregenre = () => {
                         </div>
                         <div className="genre-card-button">
                             <button className="view-details">View Details</button>
-                            <button className="add-to-cart">Add to Cart</button>
+                            <button className="add-to-cart" onClick={() => toggleWishList(book._id)}>Add to WishList</button>
                         </div>
                     </div>
                 </div>
