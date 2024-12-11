@@ -12,7 +12,7 @@ const Genre = () => {
   const { genre } = useParams();
 
   useEffect(() => {
-    fetchBooksByGenre(genre.toLowerCase());
+    fetchBooksByGenre(genre);
   }, [fetchBooksByGenre, genre]);
 
 

@@ -6,7 +6,7 @@ import { useWishListStore } from '../../store/useWishListStore';
 const Genregenre = () => {
     const {books} = useBookStore();
     const { toggleWishList } = useWishListStore();
-    console.log(books);
+
     return (
         <div className="genre-card-container">
             {books.map((book) => (

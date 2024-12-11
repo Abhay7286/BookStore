@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import Spinner from "./components/spinner/spinner.jsx";
 import Genre from "./pages/Genre/Genre.jsx";
 import WishList from "./pages/WishList/WishList.jsx";
+import Cart from "./pages/Cart/Cart.jsx";
 
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
@@ -31,6 +32,10 @@ function App() {
         <Route
           path="/wishlist"
           element={!user ? <Login /> : <WishList />}
+        />
+        <Route
+          path="/cart"
+          element={!user ? <Login /> : <Cart />}
         />
         <Route
           path="/signup"

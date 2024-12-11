@@ -8,21 +8,13 @@ import Card from '../../components/Card/Card.jsx';
 import { useBookStore } from '../../store/useBookStore.js';
 import { useEffect } from 'react';
 import BrowseByGenre from '../../components/BrowseByGenres/BrowseByGenre.jsx';
-import { useWishListStore } from '../../store/useWishListStore.js';
 
 const Home = () => {
   const { fetchFeaturedBooks } = useBookStore();
-  const { fetchWishlist,wishlist } = useWishListStore();
 
   useEffect(() => {
     fetchFeaturedBooks();
   }, [fetchFeaturedBooks]);
-
-  useEffect(() => {
-    fetchWishlist();
-  }, [fetchWishlist]);
-  
-  console.log(wishlist);
 
   return (
     <>

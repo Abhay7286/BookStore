@@ -1,16 +1,25 @@
 import Book from "../models/book.model.js";
-import redis from "../lib/redis.js";
 
 export const getWishListBooks = async (req, res) => {
   try {
-    if (!req.user) {
-      return res.status(401).json({ message: "User not authenticated" });
-    }
+    // Extract book ObjectIds from the user's wishlist
+    const bookIds = req.user.wishList.map((item) => item.book);
 
-    const books = await Book.find({ _id: { $in: req.user.wishList.map(item => item.book) } });
-    res.json(books);
+   // Fetch the books that match the ids in the wishlist
+   const books = await Book.find({ _id: { $in: bookIds } });
+
+
+    //add quantity for each book
+    const wishList = books.map((book) => {
+      const item = req.user.wishList.find(
+        (wishListItem) => wishListItem.book.toString() === book._id.toString()
+      );
+      return { ...book.toJSON() };
+    });
+
+    res.json(wishList);
   } catch (error) {
-    console.error("Error in getWishListBooks controller:", error.message);
+    console.log("error in getWishListBooks controller", error.message);
     res.status(500).json({ message: error.message });
   }
 };
@@ -37,7 +46,6 @@ export const toggleWishList = async (req, res) => {
 
       // Save both the book and the user
       await Promise.all([book.save(), user.save()]);
-      await updateWishListCache();
 
       return res.json(book);
     } else {
@@ -46,14 +54,5 @@ export const toggleWishList = async (req, res) => {
   } catch (error) {
     console.error("Error in toggleWishList function:", error.message);
     res.status(500).json({ message: error.message });
-  }
-};
-
-export const updateWishListCache = async () => {
-  try {
-    const wishListBooks = await Book.find({ isWishListed: true }).lean();
-    await redis.set("WishList_books", JSON.stringify(wishListBooks));
-  } catch (error) {
-    console.error("Error in updateWishListCache function:", error.message);
   }
 };
