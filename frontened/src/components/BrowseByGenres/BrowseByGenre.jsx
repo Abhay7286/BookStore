@@ -16,7 +16,7 @@ const genres = [
   "Poetry", 
   "Biography",
   "Historical",
-  "Philosophy",
+  "philosophy",
   "Adventure",
   "Science-fiction",
 ];

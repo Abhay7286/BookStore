@@ -8,6 +8,7 @@ import Card from '../../components/Card/Card.jsx';
 import { useBookStore } from '../../store/useBookStore.js';
 import { useEffect } from 'react';
 import BrowseByGenre from '../../components/BrowseByGenres/BrowseByGenre.jsx';
+import Popular from '../../components/Popular/Popular.jsx';
 
 const Home = () => {
   const { fetchFeaturedBooks } = useBookStore();
@@ -52,7 +53,7 @@ const Home = () => {
       </div>
 
       <div className="popular-collection">
-        {/* <Popular/> */}
+        <Popular/>
       </div>
 
       <div className="discoverContainer">

@@ -1,33 +1,64 @@
-import {React,useState} from "react";
+import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useBookStore } from "../../store/useBookStore";
+import "./Popular.css";
+
+const genres = [
+  "Romance",
+  "Fantasy",
+  "Mystery",
+  "Horror",
+  "Biography",
+  "self-help",
+  "Poetry",
+  "Drama",
+  "Thriller",
+  "Science-fiction",
+  "Comedy",
+  "Adventure",
+  "Historical",
+  "philosophy",
+];
 
 const Popular = () => {
-  return (
-    <>
-      <div className="popular-collection">
-      <div className="popular-head">
-          <h1>Popular Collection</h1>
-          <div className="links">
-                <li onClick={()=>{setGen("Romance")}}><Link>Romance {gen=="Romance"?<hr/>:''}</Link></li>
-                <li onClick={()=>{setGen("Mystery")}}><Link>Mystery {gen=="Mystery"?<hr/>:''}</Link></li>
-                <li onClick={()=>{setGen("Thriller")}}><Link>Thriller {gen=="Thriller"?<hr/>:''}</Link></li>
-                <li onClick={()=>{setGen("fantasy")}}><Link>fantasy{gen=="fantasy"?  <hr/>:''}</Link></li>
-                <li onClick={()=>{setGen("Historical")}}><Link>Historical{gen=="Historical"?  <hr/>:''}</Link></li>
-                <li><Link to="/categories">View all &rarr; </Link></li>
-                
-          </div>
-        </div>
+  const [selectedGenre, setSelectedGenre] = useState("Romance");
+  const { fetchBooksByGenre, books } = useBookStore();
 
-        <div className="popular-section">
-          {gen === "Romance" && <Romance />}
-          {gen === "Mystery" && <Mystery />}
-          {gen === "Thriller" && <Thriller />}
-          {gen === "fantasy" && <Fantasy />}
-          {gen === "Historical" && <Historical />}
+  useEffect(() => {
+    fetchBooksByGenre(selectedGenre);
+  }, [selectedGenre, fetchBooksByGenre]);
+
+  console.log(books);
+
+  return (
+    <div className="popular-collection">
+      <div className="popular-head">
+        <h1>Popular Collection</h1>
+        <div className="links">
+          {genres.map((genre) => (
+            <li key={genre} onClick={() => setSelectedGenre(genre)}>
+              <Link>
+                {genre} {selectedGenre === genre ? <hr /> : ""}
+              </Link>
+            </li>
+          ))}
+          <li>
+          <Link to={`/genre/${selectedGenre}`}>View all &rarr;</Link>
+          </li>
         </div>
       </div>
-    </>
-  )
-}
 
-export default Popular
+      <div className="popular-section">
+        {books.map((book) => (
+          <div className="popular-card" key={book._id}>
+            <img src={book.image} alt={book.title} />
+            <div className="popular-title">{book.title}</div>
+            <div className="popular-author">{book.author}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Popular;
