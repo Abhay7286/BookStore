@@ -11,6 +11,7 @@
     flex-wrap: wrap;
     gap: 1em;
     padding: 0 1em;
+    text-align: center;
 }
 
 /* Navigation Buttons */

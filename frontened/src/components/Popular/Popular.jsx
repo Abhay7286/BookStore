@@ -4,31 +4,30 @@ import { useBookStore } from "../../store/useBookStore";
 import "./Popular.css";
 
 const genres = [
-  "Romance",
-  "Fantasy",
-  "Mystery",
-  "Horror",
-  "Biography",
+  "romance",
+  "fantasy",
+  "mystery",
+  "horror",
+  "biography",
   "self-help",
-  "Poetry",
-  "Drama",
-  "Thriller",
-  "Science-fiction",
-  "Comedy",
-  "Adventure",
-  "Historical",
+  "poetry",
+  "drama",
+  "thriller",
+  "science-fiction",
+  "comedy",
+  "adventure",
+  "historical",
   "philosophy",
 ];
 
 const Popular = () => {
-  const [selectedGenre, setSelectedGenre] = useState("Romance");
+  const [selectedGenre, setSelectedGenre] = useState("romance");
   const { fetchBooksByGenre, books } = useBookStore();
 
   useEffect(() => {
     fetchBooksByGenre(selectedGenre);
   }, [selectedGenre, fetchBooksByGenre]);
 
-  console.log(books);
 
   return (
     <div className="popular-collection">
