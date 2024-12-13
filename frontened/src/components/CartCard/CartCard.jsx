@@ -1,7 +1,16 @@
-import React from "react";
+import {useEffect} from "react";
 import "./CartCard.css";
+import { useCartStore } from "../../store/useCartStore.js";
+import { use } from "react";
 
 const CartCard = () => {
+  const {cart,getCartItems} = useCartStore();
+
+  useEffect(() => {
+    getCartItems();
+  }, [getCartItems]);
+
+  console.log(cart);
   return (
     <div className="product-container">
       <div className="product-inner">

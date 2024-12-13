@@ -35,6 +35,17 @@ export const getFeaturedBooks = async (req, res) => {
     }
 }
 
+export const getBooksByAuthor = async (req, res) =>{
+    const {author} = req.params;
+    try {
+        const books = await Book.find({ author: { $in: [author] } });
+        res.json(books);
+    } catch (error) {
+        console.log("error in getBooksByAuthor controller", error.message);
+        res.status(500).json({message: error.message});
+    }
+}
+
 export const createBooks = async (req, res) => {
     try {
         const {title, author, description, genre, price, image} = req.body;
@@ -48,10 +59,10 @@ export const createBooks = async (req, res) => {
         }
 
         const book = await Book.create({
-            title,
-            author,
+            title:title.toLowerCase(),
+            author: author.toLowerCase(),
             description,
-            genre,
+            genre: genre.toLowerCase(),
             price,
             image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : ""
         });

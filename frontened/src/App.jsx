@@ -12,6 +12,7 @@ import Spinner from "./components/spinner/spinner.jsx";
 import Genre from "./pages/Genre/Genre.jsx";
 import WishList from "./pages/WishList/WishList.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
+import Author from "./pages/Author/Author.jsx";
 
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/genre/:genre" element={<Genre />} />
+        <Route path="/author/:author" element={<Author />} />
         <Route path="/genre" element={<Genre />} />
         <Route
           path="/wishlist"

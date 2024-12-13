@@ -101,5 +101,16 @@ export const useBookStore = create((set,get) => ({
         
       },
       
+      fetchBooksByAuthor: async (author) => {
+        set({ loading: true });
+        try {
+          const res = await axios.get(`/book/${author}`);
+          set({books: res?.data, loading: false});
+        } catch (error) {
+          console.log("Error fetching books:", error.response);
+          toast.error(error.response?.data?.message || "Something went wrong");
+          set({ loading: false });
+        }
+      }
       
 }))

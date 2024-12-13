@@ -1,7 +1,7 @@
 import React from 'react'
 import './GenreCard.css';
-import { useBookStore } from '../../store/useBookStore';
-import { useWishListStore } from '../../store/useWishListStore';
+import { useBookStore } from '../../store/useBookStore.js';
+import { useWishListStore } from '../../store/useWishListStore.js';
 
 const Genregenre = () => {
     const {books} = useBookStore();
