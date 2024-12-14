@@ -21,13 +21,13 @@ const userSchema = new mongoose.Schema(
     },
     cartItems: [
       {
-        quantity: {
-          type: Number,
-          default: 1,
-        },
         book: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Book",
+        },
+        quantity: {
+          type: Number,
+          default: 1,
         },
       },
     ],

@@ -5,17 +5,12 @@ import { useCartStore } from '../../store/useCartStore.js';
 import { useEffect } from 'react';
 
 const WishListCard = () => {
-    const { toggleWishList,wishlist,fetchWishlist } = useWishListStore();
-
-    const {addToCart,cart, getCartItems} = useCartStore();
+    const { wishlist, fetchWishlist } = useWishListStore();
+    const { addToCart } = useCartStore();
 
     useEffect(() => {
         fetchWishlist();
-      }, [fetchWishlist]);
-    useEffect(() => {
-        getCartItems();
-      }, [getCartItems]);
-      console.log(cart)
+    }, [fetchWishlist]);
 
     return (
         <div className="wish-card-container">
@@ -57,8 +52,9 @@ const WishListCard = () => {
                         </div>
                         <div className="wish-card-button">
                             <button className="view-details">View Details</button>
-                            <button className="add-to-cart" onClick={() => toggleWishList(book._id)}>Remove</button>
-                            <button className="add-to-cart" onClick={() => addToCart(book._id)}>Add to Cart</button>
+                            <button className="add-to-cart" onClick={() => {addToCart(book)}}>
+                                Add to Cart
+                            </button>
                         </div>
                     </div>
                 </div>
