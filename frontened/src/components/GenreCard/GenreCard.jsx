@@ -1,16 +1,27 @@
-import React from 'react'
+import {useState} from 'react'
 import './GenreCard.css';
 import { useBookStore } from '../../store/useBookStore.js';
 import { useWishListStore } from '../../store/useWishListStore.js';
+import { useCartStore } from '../../store/useCartStore.js';
+import { Heart } from 'lucide-react'
 
 const Genregenre = () => {
-    const {books} = useBookStore();
+    const { books } = useBookStore();
+    const { addToCart } = useCartStore();
     const { toggleWishList } = useWishListStore();
+    const [wishlisted, setWishlisted] = useState(false)
+    
+    const handleToggle =  (bookId) =>{
+        toggleWishList(bookId)
+        setWishlisted((prev) => !prev); // Toggle the wishlisted state
+    }
 
     return (
         <div className="genre-card-container">
             {books.map((book) => (
                 <div className="genre-card" key={book._id}>
+                    <Heart size={20} className={`genre-heart ${wishlisted ? 'red' : ''}`}
+                    onClick={() => handleToggle(book._id)}/>
                     <svg className="genre-card-svg" viewBox="0 0 375 283">
                         <rect
                             x="159.52"
@@ -47,7 +58,7 @@ const Genregenre = () => {
                         </div>
                         <div className="genre-card-button">
                             <button className="view-details">View Details</button>
-                            <button className="add-to-cart" onClick={() => toggleWishList(book._id)}>Add to WishList</button>
+                            <button className="add-to-cart" onClick={() => addToCart(book._id)}>Add to Cart</button>
                         </div>
                     </div>
                 </div>

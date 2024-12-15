@@ -21,7 +21,6 @@ export const getCartBooks = async (req, res) => {
 export const addToCart = async (req, res) => {
   try {
     const { bookId } = req.body;
-    console.log(bookId)
     const user = req.user;
 
     // Check for existing item in cart

@@ -8,7 +8,7 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
   margin: 16px;
-  height: 73vh;
+  height: 75vh;
 }
 
 .card:hover {
@@ -28,6 +28,18 @@
 .card:hover .card-svg {
   transform: scale(1.65);
 }
+.card-heart{
+  position: relative;
+  left: -7em;
+  top: 2em;
+  z-index: 11;
+  cursor: pointer;
+  transition: fill 0.3s ease;
+}
+
+.card-heart.red {
+  fill: red; /* This fills the heart icon with red */
+} 
 
 .card-image-container {
   position: relative;

@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import "./Card.css";
 import { useBookStore } from "../../store/useBookStore.js";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,10 +6,20 @@ import "swiper/css"; // Import Swiper styles
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useWishListStore } from "../../store/useWishListStore.js";
+import { useCartStore } from "../../store/useCartStore.js";
+import {Heart} from "lucide-react"
 
 const Card = () => {
   const { featuredBooks } = useBookStore();
   const { toggleWishList } = useWishListStore();
+  const { addToCart } = useCartStore();
+
+  const [wishlisted, setWishlisted] = useState(false)
+    
+    const handleToggle =  (bookId) =>{
+        toggleWishList(bookId)
+        setWishlisted((prev) => !prev); // Toggle the wishlisted state
+    }
 
   return (
     <div className="card-carousel">
@@ -23,6 +33,8 @@ const Card = () => {
         {featuredBooks.map((book) => (
           <SwiperSlide key={book._id}>
             <div className="card">
+              <Heart size={20} className={`card-heart ${wishlisted ? 'red' : ''}`}
+                onClick={() => handleToggle(book._id)}/>
               <svg className="card-svg" viewBox="0 0 375 283">
                 <rect
                   x="159.52"
@@ -59,7 +71,7 @@ const Card = () => {
                 </div>
                 <div className="card-button">
                   <button className="view-details">View Details</button>
-                  <button className="add-to-cart" onClick={() => toggleWishList(book._id)}>Add to WishList</button>
+                  <button className="add-to-cart" onClick={() => addToCart(book._id)}>Add to Cart</button>
                 </div>
               </div>
             </div>

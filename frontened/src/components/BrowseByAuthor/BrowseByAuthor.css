@@ -4,13 +4,14 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 2em;
+    margin-left: 21px;
 }
 .type>img{
     width: 1.7em;
 }
 .type{
     box-shadow: -2px 7px 14px 8px whitesmoke;
-    width: 5em;
+    width: 9em;
     border-radius: 14px;
     padding: 35px;
     text-align: center;

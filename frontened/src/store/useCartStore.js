@@ -23,32 +23,42 @@ export const useCartStore = create((set, get) => ({
     set({ cart: [], coupon: null, total: 0, subtotal: 0 });
   },
 
-  addToCart: async (book) => {
+  addToCart: async (bookId) => {
     try {
-      console.log("Sending to backend:", { bookId: book._id });
-      const res = await axios.post("/cart", { bookId: book._id });
-      console.log("Backend response:", res.data);
-
-      toast.success("Product added to cart");
-
+      // console.log(bookId)
+      const res = await axios.post("/cart", { bookId: bookId });
+      
       set((prevState) => {
         const existingItem = prevState.cart.find(
           (item) => item._id === book._id
         );
-
+        
         const newCart = existingItem
-          ? prevState.cart.map((item) =>
-              item._id === book._id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            )
-          : [...prevState.cart, { ...book, quantity: 1 }];
-
-        return { cart: newCart };
-      });
-      get().calculateTotals();
+        ? prevState.cart.map((item) =>
+          item._id === book._id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+      )
+      : [...prevState.cart, { ...book, quantity: 1 }];
+      
+      return { cart: newCart };
+    });
+    toast.success("Product added to cart");
+    get().calculateTotals();
     } catch (error) {
       toast.error("Failed to add product to cart");
+      console.error(error.response);
+    }
+  },
+
+  
+  removeFromCart: async (bookId) => {
+    try {
+      await axios.delete("/cart",{bookId});
+      set((prevState)=>({cart: prevState.cart.filter((item)=> item._id !== bookId) }));
+      get().calculateTotals()
+    } catch (error) {
+      toast.error("Failed to removing product from cart");
       console.error(error.response);
     }
   },

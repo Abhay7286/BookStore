@@ -1,70 +1,57 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import "./CartCard.css";
 import { useCartStore } from "../../store/useCartStore.js";
-import { use } from "react";
+import {CircleX } from 'lucide-react';
 
 const CartCard = () => {
-  const {cart,getCartItems} = useCartStore();
+  const { cart, getCartItems, removeFromCart} = useCartStore();
 
   useEffect(() => {
     getCartItems();
   }, [getCartItems]);
-
   console.log(cart);
+
+  const handleRemove = (bookId) => {
+    removeFromCart(bookId)
+    console.log("Remove item with id:", id);
+  };
+
   return (
-    <div className="product-container">
-      <div className="product-inner">
-        <div className="product-card">
-          <div className="product-card-header">
-            <a href="#" className="product-image-link">
-              <img
-                className="product-imagee"
-                src=""
-                alt="image"
-              />
-              <img
-                className="product-image"
-                src=""
-                alt="imac image"
-              />
-            </a>
-            <label for="counter-input" className="sr-only">
-              Choose quantity:
-            </label>
-            <div className="quantity-section">
-              <div className="quantity-buttons">
-                <button
-                  type="button"
-                  id="decrement-button"
-                  className="quantity-button decrement"
-                >
-              
-                </button>
+    <div className="cart-item">
+      {cart.map((book) => (
+        <div key={book._id} className="cart-item-container">
+          <img
+            src={book.image}
+            alt="product"
+            className="cart-item-image"
+          />
+          <div className="cart-item-details">
+            <div>
+              <h2 className="cart-item-title">{book.title}</h2>
+              <p className="cart-item-size">{book.author}</p>
+            </div>
+            <div className="cart-item-actions">
+              <div className="quantity-control">
+                <span className="decrement">-</span>
                 <input
-                  type="text"
-                  id="counter-input"
-                  data-input-counter
+                  type="number"
                   className="quantity-input"
-                  placeholder=""
-                  value="2"
-                  required
+                  value={book.quantity}
+                  min="1"
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                  }}
                 />
-                <button
-                  type="button"
-                  id="increment-button"
-                  data-input-counter-increment="counter-input"
-                  className="quantity-button increment"
-                >
-                 
-                </button>
+                <span className="increment">+</span>
               </div>
-              <div className="price-section">
-                <p className="product-price">$1,499</p>
+              <div className="price-remove">
+                <p className="price">${book.price}</p>
+                <CircleX size={20}onClick={() => handleRemove(book._id)}/>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };

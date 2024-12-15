@@ -24,6 +24,12 @@
     transform: scale(1.05);
   }
   
+  .remove-icon{
+    position: absolute;
+    left: 2em;
+    top: 2em;
+    z-index: 11;
+  }
   .wish-card-svg {
     position: absolute;
     bottom: 0;

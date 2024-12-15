@@ -3,19 +3,26 @@ import './wishListCard.css';
 import { useWishListStore } from '../../store/useWishListStore.js';
 import { useCartStore } from '../../store/useCartStore.js';
 import { useEffect } from 'react';
+import {CircleX } from 'lucide-react';
 
 const WishListCard = () => {
-    const { wishlist, fetchWishlist } = useWishListStore();
+    const { wishlist, fetchWishlist,toggleWishList } = useWishListStore();
     const { addToCart } = useCartStore();
 
     useEffect(() => {
         fetchWishlist();
     }, [fetchWishlist]);
 
+    const handleToggle = (bookId)=>{
+        toggleWishList(bookId);
+        console.log("wis")
+    }
+
     return (
         <div className="wish-card-container">
             {wishlist.map((book) => (
                 <div className="wish-card" key={book._id}>
+                    <CircleX size={20} onClick={()=>handleToggle(book._id)} className='remove-icon'/>
                     <svg className="wish-card-svg" viewBox="0 0 375 283">
                         <rect
                             x="159.52"

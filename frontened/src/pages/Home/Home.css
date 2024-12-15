@@ -49,13 +49,12 @@ hr{
     background-color: black;
 }
 .arrivalhead{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 8em 0 4em 0;
+    text-align: center;
+    margin: 3em 0 3em 0;
 }
 .arrivalhead > h1{
     width: 25%;
+    margin: auto;
 }
 .arrivalhead > p{
     width: 60%;
@@ -101,7 +100,7 @@ hr{
     display: flex;
     flex-direction: column;
     color: white;
-    background: rgb(177, 101, 7);
+    background: #BEBEF0;
     border-radius: 20px;
     padding: 2em 1.2em;
 }

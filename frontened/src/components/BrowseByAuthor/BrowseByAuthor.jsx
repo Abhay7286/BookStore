@@ -14,11 +14,6 @@ const authors = [
   "Renuka Gavrani",
   "Morgan Housel",
   "Hector Garcia",
-  "Francesc Miralles",
-  "Jane Austen",
-  "Charles Dickens",
-  "Emily Bronte",
-  "Percy Bysshe Shelley",
 ];
 const BrowseByAuthor = () => {
 

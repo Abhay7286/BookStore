@@ -34,10 +34,6 @@ const Home = () => {
       <div className="arrivalContainer">
         <div className="arrivalhead">
           <h1>New Arrivals</h1>
-          <div>"Discover the Latest Must-Reads!"</div>
-          <p>
-            Step into a world of new stories with our latest arrivals. From gripping thrillers to heartwarming romances, our shelves are brimming with fresh adventures waiting to be explored. Whether you're in the mood for a captivating mystery, an inspiring non-fiction read, or an epic fantasy, you'll find something that speaks to you. Dive in today and uncover your next favorite book!
-          </p>
         </div>
         <div className="Container">
           <Card />
