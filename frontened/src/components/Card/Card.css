@@ -9,6 +9,7 @@
   transition: transform 0.3s ease-in-out;
   margin: 16px;
   height: 75vh;
+  cursor: pointer;
 }
 
 .card:hover {

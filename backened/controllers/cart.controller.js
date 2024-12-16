@@ -24,7 +24,7 @@ export const addToCart = async (req, res) => {
     const user = req.user;
 
     // Check for existing item in cart
-    const existingItem = user.cartItems.find((item) => String(item.id) === String(bookId));
+    const existingItem = user.cartItems.find((item) => String(item.book) === String(bookId));
 
     if (existingItem) {
       existingItem.quantity += 1; // Increment quantity
@@ -32,8 +32,8 @@ export const addToCart = async (req, res) => {
       user.cartItems.push({ book: bookId, quantity: 1 }); // Add new item
     }
 
-    await user.save(); // Save updated user data
-    res.json(user.cartItems); // Return updated cart
+    await user.save(); 
+    res.json(user.cartItems); 
   } catch (error) {
     console.error("Error in addToCart:", error.message);
     res.status(500).json({ message: error.message });
@@ -49,7 +49,7 @@ export const removeAllFromCart = async (req, res) => {
     if (!bookId) {
       user.cartItems = [];
     } else {
-      user.cartItems = user.cartItems.filter((item) => item.id !== bookId);
+      user.cartItems = user.cartItems.filter((item) => String(item.book) !== String(bookId));
     }
     await user.save();
     res.json(user.cartItems);
@@ -64,11 +64,11 @@ export const updateQuantity = async (req, res) => {
     const { id: bookId } = req.params;
     const { quantity } = req.body;
     const user = req.user;
-    const existingItem = user.cartItems.find((item) => item.id === bookId);
+    const existingItem = user.cartItems.find((item) => String(item.book) === String(bookId));
 
     if (existingItem) {
       if (quantity === 0) {
-        user.cartItems = user.cartItems.filter((item) => item.id !== bookId);
+        user.cartItems = user.cartItems.filter((item) => String(item.book) !== String(bookId));
         await user.save();
         return res.json(user.cartItems);
       }

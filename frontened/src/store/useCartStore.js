@@ -9,6 +9,15 @@ export const useCartStore = create((set, get) => ({
   subtotal: 0,
   isCouponApplied: false,
 
+  getMyCoupon: async () => {
+    try {
+      const response = await axios.get("/coupon");
+      set({coupon: response?.data})
+    } catch (error) {
+      console.log("Errror in fetching coupon")
+    }
+  },
+
   getCartItems: async () => {
     try {
       const res = await axios.get("/cart");
@@ -27,40 +36,56 @@ export const useCartStore = create((set, get) => ({
     try {
       // console.log(bookId)
       const res = await axios.post("/cart", { bookId: bookId });
-      
+
       set((prevState) => {
         const existingItem = prevState.cart.find(
           (item) => item._id === book._id
         );
-        
+
         const newCart = existingItem
-        ? prevState.cart.map((item) =>
-          item._id === book._id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-      )
-      : [...prevState.cart, { ...book, quantity: 1 }];
-      
-      return { cart: newCart };
-    });
-    toast.success("Product added to cart");
-    get().calculateTotals();
+          ? prevState.cart.map((item) =>
+              item._id === book._id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            )
+          : [...prevState.cart, { ...book, quantity: 1 }];
+
+        return { cart: newCart };
+      });
+      toast.success("Product added to cart");
+      get().calculateTotals();
     } catch (error) {
       toast.error("Failed to add product to cart");
       console.error(error.response);
     }
   },
 
-  
   removeFromCart: async (bookId) => {
     try {
-      await axios.delete("/cart",{bookId});
-      set((prevState)=>({cart: prevState.cart.filter((item)=> item._id !== bookId) }));
-      get().calculateTotals()
+      await axios.delete("/cart", { bookId });
+      set((prevState) => ({
+        cart: prevState.cart.filter((item) => item._id !== bookId),
+      }));
+      get().calculateTotals();
     } catch (error) {
       toast.error("Failed to removing product from cart");
       console.error(error.response);
     }
+  },
+
+  updateBookQuantity: async (bookId, quantity) => {
+    if (quantity === 0) {
+      get().removeFromCart(bookId);
+      return;
+    }
+
+    await axios.put(`/cart/${bookId}`, { quantity });
+    set((prevState) => ({
+      cart: prevState.cart.map((item) =>
+        item._id === bookId ? { ...item, quantity } : item
+      ),
+    }));
+    get().calculateTotals();
   },
 
   calculateTotals: () => {
