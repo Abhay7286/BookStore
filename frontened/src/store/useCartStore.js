@@ -22,6 +22,7 @@ export const useCartStore = create((set, get) => ({
     try {
       const res = await axios.get("/cart");
       set({ cart: res.data });
+      get().calculateTotals();
     } catch (error) {
       set({ cart: [] });
       toast.error(error.response.data.message || "Failed to fetch cart items");
@@ -34,7 +35,6 @@ export const useCartStore = create((set, get) => ({
 
   addToCart: async (bookId) => {
     try {
-      // console.log(bookId)
       const res = await axios.post("/cart", { bookId: bookId });
 
       set((prevState) => {

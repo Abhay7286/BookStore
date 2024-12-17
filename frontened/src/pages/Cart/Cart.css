@@ -22,7 +22,11 @@
     flex: 1;
     padding-right: 16px;
   }
-  
+  .cart-summary-container{
+    gap: 10em;
+    display: flex;
+    flex-direction: column
+  }
   /* Responsive Styles */
   @media (max-width: 1024px) {
     .cart-content {

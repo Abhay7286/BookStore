@@ -2,16 +2,11 @@ import React, { useEffect,useState } from 'react'
 import CartCard from '../../components/CartCard/CartCard';
 import './Cart.css'
 import { useCartStore } from '../../store/useCartStore';
+import OrderSummary from '../../components/OrderSummary/OrderSummary.jsx';
+import RecommendedBooks from '../../components/RecommendedBooks/RecommendedBooks.jsx'
 
 const Cart = () => {
-  const {total, subtotal,cart} = useCartStore()
-  const [amount, setAmount] = useState(0)
-  const [totalAmount, setTotalAmount] = useState(0)
-
-  useEffect(() => {
-    setAmount(subtotal)
-    setTotalAmount(total)
-  }, [subtotal,total])
+  const {cart} = useCartStore()
   
   return (
 
@@ -22,10 +17,13 @@ const Cart = () => {
         <div className="cart-items">
           <CartCard />
         </div>
+        <div className="cart-summary-container">
+          {cart.length>0 && <OrderSummary/>}
+        </div>
 
-        {cart.length > 0 && <OrderSummary/>}
 
       </div>
+      {cart.length>0 && <RecommendedBooks/>}
     </div>
   );
 };
