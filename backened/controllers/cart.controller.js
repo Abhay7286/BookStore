@@ -2,19 +2,21 @@ import Book from "../models/book.model.js";
 
 export const getCartBooks = async (req, res) => {
   try {
-      const bookIds = req.user.cartItems.map((item) => item.book);  // Get book ids from cart
-      const books = await Book.find({ _id: { $in: bookIds } });     // Fetch books using those ids
-      
-      // Add quantity for each book
-      const cartItems = books.map((book) => {
-        const item = req.user.cartItems.find((cartItem) => String(cartItem.book) === String(book._id));
-        return { ...book.toJSON(), quantity: item ? item.quantity : 0 };  // Return books with quantity
-      });
+    const bookIds = req.user.cartItems.map((item) => item.book); // Get book ids from cart
+    const books = await Book.find({ _id: { $in: bookIds } }); // Fetch books using those ids
 
-      res.json(cartItems);  // Send cart items as response
+    // Add quantity for each book
+    const cartItems = books.map((book) => {
+      const item = req.user.cartItems.find(
+        (cartItem) => String(cartItem.book) === String(book._id)
+      );
+      return { ...book.toJSON(), quantity: item ? item.quantity : 0 }; // Return books with quantity
+    });
+
+    res.json(cartItems); // Send cart items as response
   } catch (error) {
-      console.log("error in getCartBooks controller", error.message);
-      res.status(500).json({ message: error.message });
+    console.log("error in getCartBooks controller", error.message);
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -24,7 +26,9 @@ export const addToCart = async (req, res) => {
     const user = req.user;
 
     // Check for existing item in cart
-    const existingItem = user.cartItems.find((item) => String(item.book) === String(bookId));
+    const existingItem = user.cartItems.find(
+      (item) => String(item.book) === String(bookId)
+    );
 
     if (existingItem) {
       existingItem.quantity += 1; // Increment quantity
@@ -32,14 +36,13 @@ export const addToCart = async (req, res) => {
       user.cartItems.push({ book: bookId, quantity: 1 }); // Add new item
     }
 
-    await user.save(); 
-    res.json(user.cartItems); 
+    await user.save();
+    res.json(user.cartItems);
   } catch (error) {
     console.error("Error in addToCart:", error.message);
     res.status(500).json({ message: error.message });
   }
 };
-
 
 export const removeAllFromCart = async (req, res) => {
   try {
@@ -49,7 +52,9 @@ export const removeAllFromCart = async (req, res) => {
     if (!bookId) {
       user.cartItems = [];
     } else {
-      user.cartItems = user.cartItems.filter((item) => String(item.book) !== String(bookId));
+      user.cartItems = user.cartItems.filter(
+        (item) => String(item.book) !== String(bookId)
+      );
     }
     await user.save();
     res.json(user.cartItems);
@@ -64,22 +69,29 @@ export const updateQuantity = async (req, res) => {
     const { id: bookId } = req.params;
     const { quantity } = req.body;
     const user = req.user;
-    const existingItem = user.cartItems.find((item) => String(item.book) === String(bookId));
+
+    // Find the item in the user's cart
+    const existingItem = user.cartItems.find(
+      (item) => String(item.book) === String(bookId)
+    );
 
     if (existingItem) {
       if (quantity === 0) {
-        user.cartItems = user.cartItems.filter((item) => String(item.book) !== String(bookId));
-        await user.save();
-        return res.json(user.cartItems);
+        user.cartItems = user.cartItems.filter(
+          (item) => String(item.book) !== String(bookId)
+        );
+      } else {
+        existingItem.quantity = quantity;
       }
-      existingItem.quantity = quantity;
+      console.log("After update:", user.cartItems);
+      // Save the updated cart to the database
       await user.save();
-      res.json(user.cartItems);
+      return res.json(user.cartItems); // Send the updated cart as response
     } else {
-      res.status(404).json({ message: "Book not found" });
+      return res.status(404).json({ message: "Book not found in the cart" });
     }
   } catch (error) {
-    console.log("error in updateQuantity controller", error.message);
-    res.status(500).json({ message: error.message });
+    console.log("Error in updateQuantity controller:", error.message);
+    return res.status(500).json({ message: error.message });
   }
 };

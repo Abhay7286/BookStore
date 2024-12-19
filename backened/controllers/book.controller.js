@@ -106,7 +106,7 @@ export const deleteBook = async (req,res) => {
 export const getRecommendedBooks = async (req, res) => {
     try {
         const books = await Book.aggregate([
-            {$sample: {size: 5}},
+            {$sample: {size: 8}},
             {$project: {_id:1, title:1, author:1, image:1, genre:1, price:1, description:1}}
         ])
 

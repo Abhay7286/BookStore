@@ -4,19 +4,26 @@ import { useCartStore } from "../../store/useCartStore.js";
 import { CircleX } from "lucide-react";
 
 const CartCard = () => {
-  const { cart, getCartItems, removeFromCart, updateBookQuantity,coupon } = useCartStore();
+  const { cart, getCartItems, removeFromCart, updateBookQuantity,coupon,getMyCoupon } = useCartStore();
   
   useEffect(() => {
     getCartItems();
   }, [getCartItems]);
 
+  useEffect(() => {
+    getMyCoupon();
+  }, []);
+ 
+
   const handleRemove = (bookId) => {
     removeFromCart(bookId);
-    console.log("Remove item with id:", bookId);
+    console.log("removing item", bookId)
   };
 
   const handleQuantityChange = (bookId, newQuantity) => {
     updateBookQuantity(bookId, newQuantity);
+    console.log("updating item", bookId)
+
   };
 
   console.log(coupon)
@@ -36,31 +43,28 @@ const CartCard = () => {
             </div>
             <div className="cart-item-actions">
               <div className="quantity-control">
-                <span
+                <button
                   className="decrement"
                   onClick={() =>
                     handleQuantityChange(book._id, book.quantity - 1)
                   }
                 >
                   -
-                </span>
+                </button>
                 <input
-                  type="number"
+                  type="text"
                   className="quantity-input"
                   value={book.quantity}
                   min="1"
-                  onChange={(e) =>
-                    handleQuantityChange(book._id, Number(e.target.value))
-                  }
                 />
-                <span
+                <button
                   className="increment"
                   onClick={() =>
                     handleQuantityChange(book._id, book.quantity + 1)
                   }
                 >
                   +
-                </span>
+                </button>
               </div>
               <div className="price-remove">
                 <p className="price">${book.price}</p>
