@@ -13,6 +13,7 @@ import Genre from "./pages/Genre/Genre.jsx";
 import WishList from "./pages/WishList/WishList.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import Author from "./pages/Author/Author.jsx";
+import PurchaseSuccessPage from "./components/Purchase/PurchaseSuccessPage.jsx"
 
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
@@ -51,6 +52,12 @@ function App() {
           path="/secret-dashboard"
           element={
             user?.role === "admin" ? <Admin /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/purchase-success"
+          element={
+            user? <PurchaseSuccessPage /> : <Navigate to="/login" />
           }
         />
       </Routes>

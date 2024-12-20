@@ -16,17 +16,18 @@ export const createCheckoutSession = async (req, res) => {
 
     const lineItems = books.map((book) => {
       const amount = Math.round(book.price * 100);
-      totalAmount += amount * book.quantity;
+      totalAmount += amount * (book.quantity || 1);
 
       return {
         price_data: {
           currency: "usd",
           product_data: {
             name: book.title,
-            image: book.image,
+            images: [book.image],
           },
           unit_amount: amount,
         },
+        quantity: book.quantity || 1,
       };
     });
 
@@ -37,6 +38,8 @@ export const createCheckoutSession = async (req, res) => {
 
         if(coupon){
             totalAmount -= Math.round((coupon.discountPercentage / 100) * totalAmount);
+        }else{
+            console.log("Invalid or inactive coupon code provided.");
         }
     }
 
@@ -51,7 +54,7 @@ export const createCheckoutSession = async (req, res) => {
         }] : [],
         metadata: {
             userId: req.user_id,
-            couponCode: coupon.code || "",
+            couponCode: coupon?.code || "",
             books: JSON.stringify(
                 books.map((book) => ({
                     id: book._id,

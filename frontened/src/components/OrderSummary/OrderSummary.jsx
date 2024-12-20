@@ -1,15 +1,43 @@
 import { useCartStore } from "../../store/useCartStore";
 import "./OrderSummary.css";
 import { Link } from "react-router-dom";
+import axios from "../../lib/axios.js";
+import { loadStripe } from "@stripe/stripe-js";
+import { MoveRight } from "lucide-react";
+
+const stripePromise = loadStripe(
+  "pk_test_51QRt0QJiheEEb3bRXxtenyfHYCgYZoQFX0diqou1ZlnmJ3pTNx0ngqurhW7G8lEoEF39J9FSSfw38MUpZVeFgFLt00SuxU1nO1"
+);
 
 const OrderSummary = () => {
-  const { total, subtotal } = useCartStore();
+  const { total, subtotal, cart, coupon,isCouponApplied } = useCartStore();
 
   const SHIPPING_FEE = "FREE";
   const savings = subtotal - total;
   const formattedSubtotal = subtotal.toFixed(2);
   const formattedTotal = total.toFixed(2);
   const formattedSavings = savings.toFixed(2);
+
+  const handlePayment = async () => {
+   try {
+    const stripe = await stripePromise;
+    const res = await axios.post("/payment/create-checkout-session", {
+      books: cart,
+      couponCode: coupon?.code || null,
+    });
+
+    const session = res.data;
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.error("Error:", result.error);
+    }
+   } catch (error) {
+    console.error("Payment Error:", error.response?.data?.message || error.message);
+   }
+  };
 
   return (
     <>
@@ -36,9 +64,11 @@ const OrderSummary = () => {
             <p className="vat-included">including VAT</p>
           </div>
         </div>
-        <button className="checkout-button" aria-label="Proceed to checkout">
+        <button className="checkout-button" aria-label="Proceed to checkout" onClick={handlePayment}>
           Check out
         </button>
+        <Link to="/"> or Continue Shopping <MoveRight size={16} />
+        </Link>
       </div>
 
       <div className="cart-summary">
@@ -46,12 +76,7 @@ const OrderSummary = () => {
           <input type="text" value="" placeholder="Enter Coupon Code" />
           <button type="button">Apply</button>
         </div>
-        <hr className="summary-divider" />
-        <button className="checkout-button" aria-label="Proceed to checkout">
-          <Link to='/'>Continue Shopping</Link>
-        </button>
       </div>
-
     </>
   );
 };

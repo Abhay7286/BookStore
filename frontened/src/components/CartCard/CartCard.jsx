@@ -10,23 +10,19 @@ const CartCard = () => {
     getCartItems();
   }, [getCartItems]);
 
-  useEffect(() => {
-    getMyCoupon();
-  }, []);
+  // useEffect(() => {
+  //   getMyCoupon();
+  // }, []);
  
 
   const handleRemove = (bookId) => {
     removeFromCart(bookId);
-    console.log("removing item", bookId)
   };
 
   const handleQuantityChange = (bookId, newQuantity) => {
     updateBookQuantity(bookId, newQuantity);
-    console.log("updating item", bookId)
-
   };
 
-  console.log(coupon)
   return (
     <div className="cart-item">
       {cart.map((book) => (

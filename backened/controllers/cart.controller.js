@@ -83,10 +83,9 @@ export const updateQuantity = async (req, res) => {
       } else {
         existingItem.quantity = quantity;
       }
-      console.log("After update:", user.cartItems);
-      // Save the updated cart to the database
+
       await user.save();
-      return res.json(user.cartItems); // Send the updated cart as response
+      return res.json(user.cartItems); 
     } else {
       return res.status(404).json({ message: "Book not found in the cart" });
     }
