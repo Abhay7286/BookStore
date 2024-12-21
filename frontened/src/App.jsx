@@ -13,7 +13,8 @@ import Genre from "./pages/Genre/Genre.jsx";
 import WishList from "./pages/WishList/WishList.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import Author from "./pages/Author/Author.jsx";
-import PurchaseSuccessPage from "./components/Purchase/PurchaseSuccessPage.jsx"
+import PurchaseSuccessPage from "./pages/Purchase/PurchaseSuccessPage.jsx"
+import PurchaseFailedPage from "./pages/Purchase/PurchaseFailedPage.jsx";
 
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
@@ -58,6 +59,12 @@ function App() {
           path="/purchase-success"
           element={
             user? <PurchaseSuccessPage /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/purchase-cancel"
+          element={
+            user? <PurchaseFailedPage /> : <Navigate to="/login" />
           }
         />
       </Routes>

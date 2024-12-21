@@ -67,7 +67,7 @@ const OrderSummary = () => {
         <button className="checkout-button" aria-label="Proceed to checkout" onClick={handlePayment}>
           Check out
         </button>
-        <Link to="/"> or Continue Shopping <MoveRight size={16} />
+        <Link to="/" className="continue-link"> or Continue Shopping <MoveRight size={16} />
         </Link>
       </div>
 

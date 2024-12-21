@@ -46,8 +46,13 @@
   margin-top: 16px;
   border-radius: 4px;
   transition: background-color 0.3s;
+  margin-bottom: 1em;
 }
 
 .checkout-button:hover {
   background-color: #e64a19;
+}
+
+.continue-link{
+  margin: 0em 3em;
 }

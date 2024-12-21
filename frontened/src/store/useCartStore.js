@@ -51,7 +51,7 @@ export const useCartStore = create((set, get) => ({
         return { cart: newCart };
       });
 
-      toast.success("Product added to cart",{id:1});
+      toast.success("Product added to cart");
       get().calculateTotals();
     } catch (error) {
       toast.error("Failed to add product to cart");
@@ -61,7 +61,7 @@ export const useCartStore = create((set, get) => ({
 
   removeFromCart: async (bookId) => {
     try {
-      await axios.delete("/cart", { bookId });
+      await axios.delete("/cart", { data: { bookId } });
       set((prevState) => ({
         cart: prevState.cart.filter((item) => item._id !== bookId),
       }));
