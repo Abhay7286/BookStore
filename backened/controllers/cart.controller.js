@@ -94,3 +94,21 @@ export const updateQuantity = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+export const clearTheCart = async (req, res) => {
+  try {
+    const user = req.user;
+
+    // Clear cartItems directly in the user object
+    user.cartItems = [];
+
+    // Save the updated user object
+    await user.save();
+
+    res.json({ message: "Cart cleared successfully", cartItems: user.cartItems });
+  } catch (error) {
+    console.log("Error in clearTheCart controller:", error.message);
+    return res.status(500).json({ message: error.message });
+  }
+};
+

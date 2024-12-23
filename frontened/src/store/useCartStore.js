@@ -30,6 +30,7 @@ export const useCartStore = create((set, get) => ({
   },
 
   clearCart: async () => {
+    await axios.delete("/cart/clear");
     set({ cart: [], coupon: null, total: 0, subtotal: 0 });
   },
 

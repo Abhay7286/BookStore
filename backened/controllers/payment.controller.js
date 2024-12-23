@@ -76,7 +76,7 @@ export const createCheckoutSession = async (req, res) => {
     });
 
     if (totalAmount >= 20000) {
-      await createNewCoupon(req.user._id);
+      await createNewCoupon(req.user?._id);
     }
 
     res.json({ id: session.id, totalAmount: totalAmount / 100 });
@@ -112,10 +112,10 @@ async function createNewCoupon(userId) {
 export const checkoutSuccess = async (req, res) => {
     try {
       const { sessionId } = req.body;
-      console.log("Session ID received:", sessionId);
+      // console.log("Session ID received:", sessionId);
   
       const session = await stripe.checkout.sessions.retrieve(sessionId);
-      console.log("Stripe session retrieved:", session);
+      // console.log("Stripe session retrieved:", session);
   
       if (session.payment_status === "paid") {
         if (session.metadata.couponCode) {
@@ -130,10 +130,10 @@ export const checkoutSuccess = async (req, res) => {
       }
   
       const books = JSON.parse(session.metadata.books);
-      console.log("Creating order with userId:", session.metadata.userId);
+      // console.log("Creating order with userId:", session.metadata.userId);
   
       const newOrder = new Order({
-        user: session.metadata.userId,
+        userId: session.metadata.userId,
         books: books.map((book) => ({
           book: book.id,
           quantity: book.quantity,
@@ -143,7 +143,7 @@ export const checkoutSuccess = async (req, res) => {
         stripeSessionId: sessionId,
       });
   
-      console.log("Order data being saved:", newOrder);
+      // console.log("Order data being saved:", newOrder);
   
       await newOrder.save();
   
