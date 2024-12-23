@@ -22,18 +22,16 @@ export const useWishListStore = create((set, get) => ({
     try {
       const response = await axios.patch(`/wishlist/${bookId}`);
       const { isWishlisted } = response.data;
-  
+
       set((prevState) => ({
         wishlist: isWishlisted
           ? prevState.wishlist // If still wishlisted, keep it
           : prevState.wishlist.filter((book) => book._id !== bookId), // Remove if not wishlisted
       }));
-
     } catch (error) {
       toast.error(
         error.response?.data?.message || "Failed to update wishlist status"
       );
     }
   },
-  
 }));
