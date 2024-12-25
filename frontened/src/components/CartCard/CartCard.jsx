@@ -4,17 +4,12 @@ import { useCartStore } from "../../store/useCartStore.js";
 import { CircleX } from "lucide-react";
 
 const CartCard = () => {
-  const { cart, getCartItems, removeFromCart, updateBookQuantity,coupon,getMyCoupon } = useCartStore();
-  
+  const { cart, removeFromCart, updateBookQuantity, getCartItems } = useCartStore();
+
   useEffect(() => {
-    getCartItems();
-  }, [getCartItems]);
-
-  // useEffect(() => {
-  //   getMyCoupon();
-  // }, []);
- 
-
+    getCartItems()
+  }, [getCartItems])
+  
   const handleRemove = (bookId) => {
     removeFromCart(bookId);
   };

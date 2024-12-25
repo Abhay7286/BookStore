@@ -12,10 +12,27 @@ export const useCartStore = create((set, get) => ({
   getMyCoupon: async () => {
     try {
       const response = await axios.get("/coupon");
-      set({coupon: response?.data})
+      set({ coupon: response?.data });
     } catch (error) {
-      console.log("Errror in fetching coupon")
+      console.log("Errror in fetching coupon");
+      set({ coupon: null });
     }
+  },
+
+  applyCoupon: async (couponCode) => {
+    try {
+      const response = await axios.post("/coupon/validate", { couponCode });
+      set({ coupon: response?.data , isCouponApplied: true });
+      get().calculateTotals(); 
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to apply coupon");
+    }
+  },
+
+  removeCoupon: async () => {
+    set({ coupon: null, isCouponApplied: false });
+    get().calculateTotals();
+    toast.success("Coupon removed");
   },
 
   getCartItems: async () => {
@@ -68,7 +85,7 @@ export const useCartStore = create((set, get) => ({
       }));
       get().calculateTotals();
     } catch (error) {
-      toast.error("Failed to removing product from cart",{id:1});
+      toast.error("Failed to removing product from cart", { id: 1 });
       console.error(error.response);
     }
   },
@@ -86,24 +103,26 @@ export const useCartStore = create((set, get) => ({
         console.error(`Book with ID ${bookId} does not exist in the cart.`);
         return;
       }
-  
+
       // Send the update request to the server
       await axios.put(`/cart/${bookId}`, { quantity });
-  
+
       // Update the cart in the state
       set((prevState) => ({
         cart: prevState.cart.map((item) =>
           item._id === bookId ? { ...item, quantity } : item
         ),
       }));
-  
+
       // Recalculate totals after updating
       get().calculateTotals();
     } catch (error) {
-      console.error(`Failed to update quantity for book with ID ${bookId}:`, error);
+      console.error(
+        `Failed to update quantity for book with ID ${bookId}:`,
+        error
+      );
     }
   },
-  
 
   calculateTotals: () => {
     const { cart, coupon } = get();

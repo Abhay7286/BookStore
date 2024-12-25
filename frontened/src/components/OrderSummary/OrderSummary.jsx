@@ -10,7 +10,7 @@ const stripePromise = loadStripe(
 );
 
 const OrderSummary = () => {
-  const { total, subtotal, cart, coupon,isCouponApplied } = useCartStore();
+  const { total, subtotal, cart, coupon } = useCartStore();
 
   const SHIPPING_FEE = "FREE";
   const savings = subtotal - total;
@@ -48,8 +48,8 @@ const OrderSummary = () => {
         </div>
         {savings > 0 && (
           <div className="summary-row">
-            <p>Shipping</p>
-            <p>{formattedSavings}</p>
+            <p>Coupon</p>
+            <p>- {formattedSavings}</p>
           </div>
         )}
         <div className="summary-row">
@@ -71,12 +71,6 @@ const OrderSummary = () => {
         </Link>
       </div>
 
-      <div className="cart-summary">
-        <div className="summary-row">
-          <input type="text" value="" placeholder="Enter Coupon Code" />
-          <button type="button">Apply</button>
-        </div>
-      </div>
     </>
   );
 };
