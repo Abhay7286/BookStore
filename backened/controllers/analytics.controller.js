@@ -2,17 +2,17 @@ import User from "../models/user.model.js";
 import Book from "../models/book.model.js";
 import Order from "../models/order.model.js";
 
-export const getAnalyticsData = async (req, res) => {
-  const totalUsers = await User.countDocument();
-  const totalBooks = await Book.countDocument();
+export const getAnalyticsData = async () => {
+  const totalUsers = await User.countDocuments();
+  const totalBooks = await Book.countDocuments();
 
-  const salesData = await Order.aggregate({
-    $group: {
+  const salesData = await Order.aggregate([
+   { $group: {
       _id: null,
-      totalRevenue: { $sum: "$totalAmount" },
       totalSales: { $sum: 1 },
-    },
-  });
+      totalRevenue: { $sum: "$totalAmount" },
+    },}
+  ]);
 
   const { totalRevenue, totalSales } = salesData[0] || {
     totalRevenue: 0,
