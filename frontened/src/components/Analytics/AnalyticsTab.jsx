@@ -133,7 +133,7 @@ const AnalyticsCard = ({ title, icon: Icon, color, value }) => {
     >
       <div className="card-header">
         <div>
-          <p className="card-title">{title}</p>
+          <p className="analytics-card-title">{title}</p>
           <h3 className="card-value">{value}</h3>
         </div>
       </div>
