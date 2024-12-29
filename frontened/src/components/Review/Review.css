@@ -39,6 +39,7 @@
     padding: 2em;
     border-radius: 2em;
     max-width: 90%;
+    height: 45vh;
 }
 
 .person > img {

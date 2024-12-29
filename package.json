@@ -28,6 +28,7 @@
     "react-confetti": "^6.1.0",
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^7.0.2",
+    "redis-cli": "^2.1.2",
     "stripe": "^17.4.0",
     "zustand": "^5.0.1"
   },
