@@ -40,13 +40,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="store">
-        <img src={loginimg} alt="img" className="store-img" />
-        <div className="about">
-          <h1>BookStore</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.   Laudantium harum neque iste hic aliquam minima itaque perferendis   quidem, tempora minus assumenda quas expedita. Esse quia et vel   obcaecati commodi suscipit!</p>
-        </div>
-      </div>
+     
 
       <div className="popular-collection">
         <Popular/>

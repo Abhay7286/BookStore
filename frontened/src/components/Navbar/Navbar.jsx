@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { ShoppingCart, LogIn, Lock, LogOut, UserPlus,Heart } from "lucide-react";
 import { useUserStore } from "../../store/useUserStore.js";
-import SearchBar from "../SearchBar/SearchBar.jsx";
+// import SearchBar from "../SearchBar/SearchBar.jsx";
 
 const Navbar = () => {
   const location = useLocation();
@@ -48,7 +48,7 @@ const Navbar = () => {
           </Link>
         </li>
 
-        <SearchBar/>
+       
       </ul>
 
       <div className="nav-login-cart">

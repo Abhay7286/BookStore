@@ -126,7 +126,7 @@ export default AnalyticsTab;
 const AnalyticsCard = ({ title, icon: Icon, color, value }) => {
   return (
     <motion.div
-      className={`card-container ${color}`}
+      className={`analytics-card-container ${color}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}

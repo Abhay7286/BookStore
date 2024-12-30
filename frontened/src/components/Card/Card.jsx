@@ -27,7 +27,7 @@ const Card = () => {
       <Swiper
         modules={[Navigation]}
         spaceBetween={3}
-        slidesPerView={3}
+        slidesPerView={4}
         navigation
         loop={true}
       >
@@ -43,7 +43,7 @@ const Card = () => {
                   onClick={() => handleToggle(book._id)}
                   aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
                 />
-                <svg className="card-svg" viewBox="0 0 375 283">
+                {/* <svg className="card-svg" viewBox="0 0 375 283">
                   <rect
                     x="159.52"
                     y="175"
@@ -61,7 +61,7 @@ const Card = () => {
                     transform="rotate(-45 0 107.48)"
                     fill="white"
                   />
-                </svg>
+                </svg> */}
                 <div className="card-image-container">
                   <div className="card-shadow"></div>
                   <img
@@ -75,10 +75,10 @@ const Card = () => {
                   <div className="card-details">
                     <span className="card-author">{book.author}</span>
                     <span className="card-price">${book.price || "0.00"}</span>
-                    <span className="card-genre">{book.genre}</span>
+                    {/* <span className="card-genre">{book.genre}</span> */}
                   </div>
                   <div className="card-button">
-                    <button className="view-details">View Details</button>
+                    {/* <button className="view-details">View Details</button> */}
                     <button className="add-to-cart" onClick={() => addToCart(book._id)}>
                       Add to Cart
                     </button>

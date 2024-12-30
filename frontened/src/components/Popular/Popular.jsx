@@ -7,16 +7,11 @@ const genres = [
   "romance",
   "fantasy",
   "mystery",
-  "horror",
   "biography",
   "self-help",
-  "poetry",
-  "drama",
+  "novel",
   "thriller",
-  "science-fiction",
-  "comedy",
   "adventure",
-  "historical",
   "philosophy",
 ];
 

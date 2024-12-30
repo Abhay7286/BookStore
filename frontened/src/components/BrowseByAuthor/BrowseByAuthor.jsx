@@ -5,7 +5,7 @@ import "./BrowseByAuthor.css";
 
 const authors = [
   "Sarah Adams",
-  "RuNyx",
+  "Franz Kafka",
   "Marcus Aurelius",
   "Joseph Murphy",
   "J.K. Rowling",

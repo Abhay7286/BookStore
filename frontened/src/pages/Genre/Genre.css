@@ -1,3 +1,6 @@
 .dashboard-heading{
     text-align: center;
 }
+.card-container{
+    min-height: 80vh;
+}
