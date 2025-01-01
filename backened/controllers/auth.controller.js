@@ -213,11 +213,13 @@ export const setProfile = async (req, res) => {
 
 export const setAddress = async (req, res) => {
   try {
-    const { address } = req.body;
+    const { street, landmark, city, state, pincode, country } = req.body; 
 
-    if (!address || !address.street || !address.city || !address.pincode) {
+    if (!street || !city || !pincode) {
       return res.status(400).json({ message: "Complete address details are required." });
     }
+
+    const address = { street, landmark, city, state, pincode, country }; // Reconstruct the address object
 
     const updatedAddress = await User.findByIdAndUpdate(
       req.user._id,
@@ -229,9 +231,10 @@ export const setAddress = async (req, res) => {
       return res.status(404).json({ message: "User not found." });
     }
 
-    res.status(200).json(updatedAddress);
+    res.status(200).json({ address: updatedAddress.address });
   } catch (error) {
     console.error("Error in setAddress controller:", error.message);
     res.status(500).json({ message: "Internal server error. Please try again." });
   }
 };
+

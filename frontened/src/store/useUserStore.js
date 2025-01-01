@@ -98,6 +98,7 @@ export const useUserStore = create((set, get) => ({
   },
   updateAddress: async (address) => {
     try {
+      console.log(address);
       const res = await axios.patch("/auth/address-update", address);
       set({ user: res.data });
       toast.success("Address updated successfully!");

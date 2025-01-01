@@ -6,7 +6,7 @@ const Profile = () => {
   const { user, updateUser, updateAddress } = useUserStore();
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [isEditingAddress, setIsEditingAddress] = useState(false);
-  const [currentAddress, setCurrentAddress] = useState(null);
+
   const [formData, setFormData] = useState({
     name: user.name,
     email: user.email,
@@ -14,13 +14,15 @@ const Profile = () => {
   });
 
   const [addressData, setAddressData] = useState({
-    street: user.address.street || "",
-    landmark: user.address.landmark || "",
-    city: user.address.city || "",
-    state:  user.address.state || "",
-    pincode: user.address.pincode || "",
-    country:  user.address.country || "",
+    street: user.address[0].street || "",
+    landmark: user.address[0].landmark || "",
+    city: user.address[0].city || "",
+    state: user.address[0].state || "",
+    pincode: user.address[0].pincode || "",
+    country: user.address[0].country || "",
   });
+
+
 
   const handleProfileChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -31,7 +33,7 @@ const Profile = () => {
   };
 
   const saveProfile = () => {
-    updateUser(formData); 
+    updateUser(formData);
     setIsEditingProfile(false);
   };
 
@@ -47,7 +49,6 @@ const Profile = () => {
         <p>Manage your account and settings</p>
       </header>
 
-      {/* Profile Section */}
       <section className="profile-details">
         <div className="profile-card">
           <div className="profile-info">
@@ -89,31 +90,21 @@ const Profile = () => {
         </div>
       </section>
 
-      {/* Address Book Section */}
       <section className="address-book">
         <h2>Address Book</h2>
         <div className="address-card">
-          <h3>Home</h3>
+          <h3>Address</h3>
           <p>
-            {user.address.street} <br />
-            {user.address.landmark} <br />
-            {user.address.city} <br />
-            {user.address.state} <br />
-            {user.address.pincode} <br />
-            {user.address.country}
+            {addressData.street} <br />
+            {addressData.landmark} <br />
+            {addressData.city} <br />
+            {addressData.state} <br />
+            {addressData.pincode} <br />
+            {addressData.country}
           </p>
           <button
             className="edit-btn"
-            onClick={() => {
-              setIsEditingAddress(true);
-              setCurrentAddress({
-                street: "123 Example Street",
-                city: "Mumbai",
-                state: "Maharashtra",
-                pincode: "400001",
-                country: "India",
-              });
-            }}
+            onClick={ () => {setIsEditingAddress(true)} }
           >
             Edit
           </button>
@@ -122,7 +113,6 @@ const Profile = () => {
         <button className="add-address-btn">+ Add New Address</button>
       </section>
 
-      {/* Edit Address Modal */}
       {isEditingAddress && (
         <div className="modal">
           <div className="modal-content">
@@ -130,35 +120,42 @@ const Profile = () => {
             <input
               type="text"
               name="street"
-              value={addressData.street || currentAddress?.street}
+              value={addressData.street}
               onChange={handleAddressChange}
               placeholder="Street"
             />
             <input
               type="text"
+              name="landmark"
+              value={addressData.landmark}
+              onChange={handleAddressChange}
+              placeholder="Landmark"
+            />
+            <input
+              type="text"
               name="city"
-              value={addressData.city || currentAddress?.city}
+              value={addressData.city}
               onChange={handleAddressChange}
               placeholder="City"
             />
             <input
               type="text"
               name="state"
-              value={addressData.state || currentAddress?.state}
+              value={addressData.state}
               onChange={handleAddressChange}
               placeholder="State"
             />
             <input
               type="text"
               name="pincode"
-              value={addressData.pincode || currentAddress?.pincode}
+              value={addressData.pincode }
               onChange={handleAddressChange}
               placeholder="Pincode"
             />
             <input
               type="text"
               name="country"
-              value={addressData.country || currentAddress?.country}
+              value={addressData.country }
               onChange={handleAddressChange}
               placeholder="Country"
             />
