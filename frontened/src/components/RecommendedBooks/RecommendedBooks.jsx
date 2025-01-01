@@ -56,25 +56,6 @@ const RecommendedBooks = () => {
               className={`recom-heart ${wishlisted ? "red" : ""}`}
               onClick={() => handleToggle(book._id)}
             />
-            <svg className="recom-card-svg" viewBox="0 0 375 283">
-              <rect
-                x="159.52"
-                y="175"
-                width="152"
-                height="152"
-                rx="8"
-                transform="rotate(-45 159.52 175)"
-                fill="white"
-              />
-              <rect
-                y="107.48"
-                width="152"
-                height="152"
-                rx="8"
-                transform="rotate(-45 0 107.48)"
-                fill="white"
-              />
-            </svg>
             <div className="recom-card-image-container">
               <div className="recom-card-shadow"></div>
               <img
@@ -85,15 +66,13 @@ const RecommendedBooks = () => {
             </div>
             <div className="recom-card-text">
               <span className="recom-card-title">{book.title}</span>
-              <div className="genre-card-details">
+              <div className="recom-card-details">
                 <span className="recom-card-author">{book.author}</span>
                 <span className="recom-card-price">
                   ${book.price || "0.00"}
                 </span>
-                <span className="recom-card-genre">{book.genre}</span>
               </div>
               <div className="recom-card-button">
-                <button className="view-details">View Details</button>
                 <button
                   className="add-to-cart"
                   onClick={() => addToCart(book._id)}

@@ -86,6 +86,25 @@ export const useUserStore = create((set, get) => ({
       throw error;
     }
   },
+
+  updateUser: async (user) => {
+    try {
+      const res = await axios.patch("/auth/profile-update", user);
+      set({ user: res.data });
+      toast.success("Profile updated successfully!");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Something went wrong");
+    }
+  },
+  updateAddress: async (address) => {
+    try {
+      const res = await axios.patch("/auth/address-update", address);
+      set({ user: res.data });
+      toast.success("Address updated successfully!");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Something went wrong");
+    }
+  },
 }));
 
 let refreshPromise = null;

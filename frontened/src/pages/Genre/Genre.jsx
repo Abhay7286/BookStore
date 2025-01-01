@@ -7,7 +7,7 @@ import './Genre.css';
 import GenreCard from '../../components/GenreCard/GenreCard.jsx';
 
 const Genre = () => {
-  const { fetchBooksByGenre } = useBookStore();
+  const { fetchBooksByGenre, books, toggleWishList } = useBookStore();
 
   const { genre } = useParams();
 
@@ -28,7 +28,9 @@ const Genre = () => {
       </motion.h1>
 
       <div className="card-container">
-        <GenreCard />
+        {books.map((book) => (
+          <GenreCard key={book._id} book={book} />
+        ))}
       </div>
     </ >
   )

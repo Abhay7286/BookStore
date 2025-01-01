@@ -15,6 +15,7 @@ import Cart from "./pages/Cart/Cart.jsx";
 import Author from "./pages/Author/Author.jsx";
 import PurchaseSuccessPage from "./pages/Purchase/PurchaseSuccessPage.jsx"
 import PurchaseFailedPage from "./pages/Purchase/PurchaseFailedPage.jsx";
+import Profile from "./pages/Profile/Profile.jsx";
 
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
@@ -33,6 +34,10 @@ function App() {
         <Route path="/genre/:genre" element={<Genre />} />
         <Route path="/author/:author" element={<Author />} />
         <Route path="/genre" element={<Genre />} />
+        <Route
+          path="/profile"
+          element={!user ? <Login /> : <Profile />}
+        />
         <Route
           path="/wishlist"
           element={!user ? <Login /> : <WishList />}

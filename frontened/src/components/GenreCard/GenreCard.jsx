@@ -7,8 +7,7 @@ import { useCartStore } from '../../store/useCartStore.js';
 import { useUserStore } from '../../store/useUserStore.js';
 // import toast from 'react-hot-toast';
 
-const Genregenre = () => {
-    const { books } = useBookStore();
+const Genregenre = ({book}) => {
     // const { addToCart } = useCartStore();
     // const { toggleWishList } = useWishListStore();
     const {user} = useUserStore()
@@ -24,14 +23,12 @@ const Genregenre = () => {
 
     return (
         <div className="genre-section">
-        {books.map((book) => (
           <div className="genre-card" key={book._id}>
             <img src={book.image} alt={book.title} />
             <div className="genre-title">{book.title}</div>
             <div className="genre-author">{book.author}</div>
             <div className="genre-price">${book.price}</div>
           </div>
-        ))}
       </div>
     )
 }

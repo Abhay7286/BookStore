@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import CartCard from '../../components/CartCard/CartCard';
+import CartCard from '../../components/CartCard/CartCard.jsx';
 import './Cart.css';
-import { useCartStore } from '../../store/useCartStore';
+import { useCartStore } from '../../store/useCartStore.js';
 import OrderSummary from '../../components/OrderSummary/OrderSummary.jsx';
 import Coupon from '../../components/Coupon/Coupon.jsx';
 import RecommendedBooks from '../../components/RecommendedBooks/RecommendedBooks.jsx';

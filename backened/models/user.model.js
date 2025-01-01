@@ -19,6 +19,21 @@ const userSchema = new mongoose.Schema(
       required: [true, "password is required"],
       minlength: [6, "password must be at least 6 characters"],
     },
+    phone: {
+      type: Number,
+      minlength: 10,
+      maxlength: 10,
+    },
+    address: [
+      {
+        street: { type: String, required: true },
+        landmark: { type: String },
+        city: { type: String, required: true },
+        state: { type: String, required: true },
+        pincode: { type: String, required: true },
+        country: { type: String, default: 'India' }, // Assuming India by default
+      }
+    ],
     cartItems: [
       {
         book: {
@@ -41,6 +56,7 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+    
     role: {
       type: String,
       enum: ["customer", "admin"],
