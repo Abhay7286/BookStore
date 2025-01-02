@@ -1,15 +1,11 @@
-/* Profile Container */
 .profile-container {
     font-family: Arial, sans-serif;
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  /* Header */
   .profile-header {
     text-align: center;
     margin-bottom: 30px;
@@ -17,15 +13,12 @@
   
   .profile-header h1 {
     font-size: 24px;
-    color: #333;
   }
   
   .profile-header p {
     font-size: 16px;
-    color: #666;
   }
   
-  /* Profile Details */
   .profile-details {
     margin-bottom: 30px;
   }
@@ -34,30 +27,14 @@
     display: flex;
     align-items: center;
     padding: 20px;
-    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profile-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-right: 20px;
   }
   
   .profile-info {
     flex: 1;
   }
-  
-  .profile-info h2 {
-    margin: 0;
-    color: #333;
-  }
-  
   .profile-info p {
     margin: 5px 0;
-    color: #666;
   }
   
   .edit-btn {
@@ -73,7 +50,6 @@
     background-color: #e5375f;
   }
   
-  /* Address Book */
   .address-book {
     margin-bottom: 30px;
   }
@@ -82,18 +58,15 @@
     padding: 20px;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
   }
   
   .address-card h3 {
     margin: 0;
-    color: #333;
   }
   
   .address-card p {
     margin: 10px 0;
-    color: #666;
   }
   
   .delete-btn {
@@ -132,7 +105,6 @@
     padding: 20px;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
   }
   

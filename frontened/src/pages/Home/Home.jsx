@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './Home.css';
-import loginimg from '../../assets/loginimg.jpg';
 import rocket from '../../assets/rocket.webp';
 import Review from '../../components/Review/Review.jsx';
 import Article from '../../components/Article/Article.jsx';
@@ -9,6 +8,7 @@ import { useBookStore } from '../../store/useBookStore.js';
 import { useEffect } from 'react';
 import BrowseByAuthor from '../../components/BrowseByAuthor/BrowseByAuthor.jsx';
 import Popular from '../../components/Popular/Popular.jsx';
+import { useUserStore } from '../../store/useUserStore.js';
 
 const Home = () => {
   const { fetchFeaturedBooks } = useBookStore();
@@ -16,6 +16,7 @@ const Home = () => {
   useEffect(() => {
     fetchFeaturedBooks();
   }, [fetchFeaturedBooks]);
+
 
   return (
     <>

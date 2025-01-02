@@ -3,7 +3,7 @@
     justify-content: space-around;
     padding: 6px;
     box-shadow: 0 1px 3px -2px black;
-    height: 11vh;
+    height: 9vh;
     background: #F1F5FF;
 }
 button{
@@ -15,8 +15,12 @@ button{
 }
 button>a{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+button>a>span{
+    color: black;
 }
 .nav-logo{
     display: flex;

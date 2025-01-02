@@ -6,6 +6,7 @@ export const useUserStore = create((set, get) => ({
   user: null,
   loading: false,
   checkingAuth: true,
+  userOrders: [],
 
   signup: async ({ name, email, password, confirmPassword }) => {
     set({ loading: true });
@@ -106,6 +107,15 @@ export const useUserStore = create((set, get) => ({
       toast.error(error.response?.data?.message || "Something went wrong");
     }
   },
+
+  fetchUserOrders: async () => {
+    try{
+      const res = await axios.get("/auth/orders");
+      set({ userOrders: res?.data });
+    }catch(error){
+      toast.error(error.response?.data?.message || "Something went wrong");
+    }
+  }
 }));
 
 let refreshPromise = null;

@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "./Profile.css";
 import { useUserStore } from "../../store/useUserStore.js";
+import { useEffect } from "react";
 
 const Profile = () => {
-  const { user, updateUser, updateAddress } = useUserStore();
+  const { user, updateUser, updateAddress, userOrders,fetchUserOrders} = useUserStore();
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [isEditingAddress, setIsEditingAddress] = useState(false);
+
+  useEffect(() => {
+    fetchUserOrders();
+  }, [fetchUserOrders]);
 
   const [formData, setFormData] = useState({
     name: user.name,
@@ -22,6 +27,8 @@ const Profile = () => {
     country: user.address[0].country || "",
   });
 
+
+  // console.log(userOrders[userOrders.length - 1]);
 
 
   const handleProfileChange = (e) => {
@@ -54,9 +61,9 @@ const Profile = () => {
           <div className="profile-info">
             {!isEditingProfile ? (
               <>
-                <h2>{user.name}</h2>
-                <p>{user.email}</p>
-                <p>{user.phone}</p>
+                <p>Full Name: {user.name}</p>
+                <p>Email: {user.email}</p>
+                <p>Mobile Number: {user.phone}</p>
                 <button className="edit-btn" onClick={() => setIsEditingProfile(true)}>Edit Profile</button>
               </>
             ) : (
@@ -91,16 +98,16 @@ const Profile = () => {
       </section>
 
       <section className="address-book">
-        <h2>Address Book</h2>
+        <h2>Saved Addresses</h2>
         <div className="address-card">
           <h3>Address</h3>
           <p>
-            {addressData.street} <br />
-            {addressData.landmark} <br />
-            {addressData.city} <br />
-            {addressData.state} <br />
-            {addressData.pincode} <br />
-            {addressData.country}
+            Street: {addressData.street} <br/>
+            Landmark: {addressData.landmark} <br />
+            City: {addressData.city} <br />
+            State: {addressData.state} <br />
+            Pincode: {addressData.pincode} <br />
+            Country: {addressData.country}
           </p>
           <button
             className="edit-btn"
@@ -164,6 +171,26 @@ const Profile = () => {
           </div>
         </div>
       )}
+
+{/* <section className="address-book">
+        <h2>Last Ordered</h2>
+        <div className="address-card">
+          <h3>Order</h3>
+          <p>
+            books: {userOrders[userOrders.length - 1].books} <br/>
+            TotalAmount: {userOrders[userOrders.length - 1].totalamount} <br />
+            Country: {addressData.country}
+          </p>
+          <button
+            className="edit-btn"
+            onClick={ () => {setIsEditingAddress(true)} }
+          >
+            Edit
+          </button>
+          <button className="delete-btn">Delete</button>
+        </div>
+        <button className="add-address-btn">+ Add New Address</button>
+      </section> */}
     </div>
   );
 };

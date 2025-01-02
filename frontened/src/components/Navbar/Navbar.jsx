@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
-import { ShoppingCart, LogIn, Lock, LogOut, UserPlus,Heart } from "lucide-react";
+import { ShoppingCart, LogIn, Lock, LogOut, UserPlus, Heart, User } from "lucide-react";
 import { useUserStore } from "../../store/useUserStore.js";
 // import SearchBar from "../SearchBar/SearchBar.jsx";
 
@@ -54,19 +54,28 @@ const Navbar = () => {
       <div className="nav-login-cart">
         {user ? (
           <>
-            <button onClick={logout}>
-              <Link to="/logout">
-                <LogOut size={20} /> <span>Logout</span>
-              </Link>
-            </button>
             <button className="wishlist">
               <Link to="/wishlist">
                 <Heart size={20} />
+                <span>Wishlist</span>
               </Link>
             </button>
             <button className="cart">
               <Link to="/cart">
                 <ShoppingCart size={20} />
+                <span>Cart</span>
+              </Link>
+            </button>
+            <button className="profile">
+              <Link to="/profile">
+                <User size={20} />
+                <span>Profile</span>
+              </Link>
+            </button>
+            <button onClick={logout}>
+              <Link to="/logout">
+                <LogOut size={20} /> 
+                <span>Logout</span>
               </Link>
             </button>
             {isAdmin && (

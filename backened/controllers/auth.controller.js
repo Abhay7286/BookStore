@@ -1,4 +1,5 @@
 import redis from "../lib/redis.js";
+import Order from "../models/order.model.js";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 
@@ -176,6 +177,23 @@ export const getProfile = async (req, res) => {
       return res.status(401).json({ message: "Unauthorized user." });
     }
     res.status(200).json(req.user);
+  } catch (error) {
+    console.error("Error in getProfile controller:", error.message);
+    res
+      .status(500)
+      .json({ message: "Internal server error. Please try again." });
+  }
+};
+
+export const getOrder = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Unauthorized user." });
+    }
+    const orders = await Order.find({userId: req.user._id});
+    console.log(orders);
+    res.status(200).json(orders);
+
   } catch (error) {
     console.error("Error in getProfile controller:", error.message);
     res
