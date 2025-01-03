@@ -31,6 +31,8 @@ button>a>span{
     display: flex;
     align-items: center;
     gap: 30px;
+    list-style: none;
+    padding: 0;
 }
 .nav-menu li.active a {
     text-decoration: underline; /* Optional: for visual emphasis */
@@ -73,3 +75,56 @@ a{
     align-items: center;
     background-color: #F1F5FF;
 }
+
+/* Navbar styles */
+
+  
+  .nav-menu li {
+    position: relative;
+  }
+  
+  .nav-menu a {
+    color: #333;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+  }
+  
+  .nav-menu li:hover {
+    background-color: #ddd;
+  }
+  
+  .active {
+    font-weight: bold;
+  }
+  
+  /* Dropdown styles */
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dropdown li {
+    padding: 0px 20px;
+  }
+  
+  .dropdown li a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .dropdown li a:hover {
+    background-color: #ddd;
+  }
+  
+  /* Show dropdown on hover */
+  .nav-menu li:hover .dropdown {
+    display: block;
+  }
+  

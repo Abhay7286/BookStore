@@ -4,31 +4,35 @@ import { useUserStore } from "../../store/useUserStore.js";
 import { useEffect } from "react";
 
 const Profile = () => {
-  const { user, updateUser, updateAddress, userOrders,fetchUserOrders} = useUserStore();
+  const { user, updateUser, updateAddress, userOrders, fetchUserOrders } = useUserStore();
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [isEditingAddress, setIsEditingAddress] = useState(false);
-
+  
   useEffect(() => {
     fetchUserOrders();
   }, [fetchUserOrders]);
-
+  
   const [formData, setFormData] = useState({
     name: user.name,
     email: user.email,
     phone: user.phone,
   });
-
-  const [addressData, setAddressData] = useState({
-    street: user.address[0].street || "",
-    landmark: user.address[0].landmark || "",
-    city: user.address[0].city || "",
-    state: user.address[0].state || "",
-    pincode: user.address[0].pincode || "",
-    country: user.address[0].country || "",
+  
+  const [addressData, setAddressData] = useState(() => {
+    const address = user.address && user.address[0] ? user.address[0] : {};
+    return {
+      street: address.street || "",
+      landmark: address.landmark || "",
+      city: address.city || "",
+      state: address.state || "",
+      pincode: address.pincode || "",
+      country: address.country || "",
+    };
   });
+  
 
 
-  // console.log(userOrders[userOrders.length - 1]);
+  const latestOrder = userOrders && userOrders.length > 0 && (userOrders[userOrders.length - 1]);
 
 
   const handleProfileChange = (e) => {
@@ -98,26 +102,33 @@ const Profile = () => {
       </section>
 
       <section className="address-book">
-        <h2>Saved Addresses</h2>
-        <div className="address-card">
-          <h3>Address</h3>
-          <p>
-            Street: {addressData.street} <br/>
-            Landmark: {addressData.landmark} <br />
-            City: {addressData.city} <br />
-            State: {addressData.state} <br />
-            Pincode: {addressData.pincode} <br />
-            Country: {addressData.country}
-          </p>
-          <button
-            className="edit-btn"
-            onClick={ () => {setIsEditingAddress(true)} }
-          >
-            Edit
-          </button>
-          <button className="delete-btn">Delete</button>
-        </div>
-        <button className="add-address-btn">+ Add New Address</button>
+      {user.address && user.address.length > 0 ? (
+  <>
+    <h2>Saved Addresses</h2>
+    <div className="address-card">
+      <h3>Address</h3>
+      <p>
+        Street: {addressData.street} <br />
+        Landmark: {addressData.landmark} <br />
+        City: {addressData.city} <br />
+        State: {addressData.state} <br />
+        Pincode: {addressData.pincode} <br />
+        Country: {addressData.country}
+      </p>
+      <button
+        className="edit-btn"
+        onClick={() => {
+          setIsEditingAddress(true);
+        }}
+      >
+        Edit
+      </button>
+    </div>
+  </>
+) : (
+  <p>No saved addresses available.</p>
+)}
+
       </section>
 
       {isEditingAddress && (
@@ -155,14 +166,14 @@ const Profile = () => {
             <input
               type="text"
               name="pincode"
-              value={addressData.pincode }
+              value={addressData.pincode}
               onChange={handleAddressChange}
               placeholder="Pincode"
             />
             <input
               type="text"
               name="country"
-              value={addressData.country }
+              value={addressData.country}
               onChange={handleAddressChange}
               placeholder="Country"
             />
@@ -172,25 +183,42 @@ const Profile = () => {
         </div>
       )}
 
-{/* <section className="address-book">
-        <h2>Last Ordered</h2>
-        <div className="address-card">
-          <h3>Order</h3>
-          <p>
-            books: {userOrders[userOrders.length - 1].books} <br/>
-            TotalAmount: {userOrders[userOrders.length - 1].totalamount} <br />
-            Country: {addressData.country}
-          </p>
-          <button
-            className="edit-btn"
-            onClick={ () => {setIsEditingAddress(true)} }
-          >
-            Edit
-          </button>
-          <button className="delete-btn">Delete</button>
-        </div>
-        <button className="add-address-btn">+ Add New Address</button>
-      </section> */}
+      <section className="order-history">
+        <h2>Last Order</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Date</th>
+              <th>Total Amount</th>
+              <th>Status</th>
+              <th>Books</th>
+            </tr>
+          </thead>
+          <tbody>
+            {latestOrder && latestOrder.books && latestOrder.books.length > 0 ? (
+              latestOrder.books.map((book, index) => (
+                <tr key={index}>
+                  <td>{latestOrder._id}</td>
+                  <td>{new Date(latestOrder.createdAt).toLocaleDateString()}</td>
+                  <td>${latestOrder.totalAmount}</td>
+                  <td>{latestOrder.status || "Confimed"}</td>
+                  <td>
+                    <p>BookId: {book.book}</p>
+                    <p>Quantity: {book.quantity}</p>
+                    <p>Price: ${book.price}</p>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5">No books available for this order.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </section>
+
     </div>
   );
 };
