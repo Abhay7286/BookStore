@@ -24,16 +24,14 @@ const userSchema = new mongoose.Schema(
       minlength: 10,
       maxlength: 10,
     },
-    address: [
-      {
-        street: { type: String, required: true },
-        landmark: { type: String },
-        city: { type: String, required: true },
-        state: { type: String, required: true },
-        pincode: { type: String, required: true },
-        country: { type: String, default: 'India' }, // Assuming India by default
-      }
-    ],
+    address: {
+      street: String,
+      landmark: String,
+      city: String,
+      state: String,
+      pincode: Number,
+      country: String,
+    },
     cartItems: [
       {
         book: {
@@ -46,7 +44,7 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
-    
+
     wishList: [
       {
         book: {
@@ -56,7 +54,7 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
-    
+
     role: {
       type: String,
       enum: ["customer", "admin"],

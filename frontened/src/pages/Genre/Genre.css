@@ -1,5 +1,6 @@
 .dashboard-heading {
   text-align: center;
+  margin: 1.2em 0em;
 }
 .card-container {
   min-height: 80vh;

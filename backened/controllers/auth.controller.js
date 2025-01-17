@@ -133,11 +133,11 @@ export const refreshToken = async (req, res) => {
     // Decode the token
     const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
 
-    // console.log(`Decoded userId from refresh token: ${decoded.userid}`);
+    console.log(`Decoded userId from refresh token: ${decoded.userid}`);
 
     // Retrieve the stored refresh token from Redis
     const storedToken = await redis.get(`refresh_token:${decoded.userid}`);
-    // console.log(`Stored token: ${storedToken}`);
+    console.log(`Stored token: ${storedToken}`);
 
     if (!storedToken) {
       console.log("Stored token is null. Possible expiry or Redis issue.");
@@ -151,7 +151,7 @@ export const refreshToken = async (req, res) => {
 
     // Generate new access token
     const accessToken = jwt.sign(
-      { userId: decoded.userid },
+      { userid: decoded.userid },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: "15m" }
     );
@@ -191,7 +191,6 @@ export const getOrder = async (req, res) => {
       return res.status(401).json({ message: "Unauthorized user." });
     }
     const orders = await Order.find({userId: req.user._id});
-    console.log(orders);
     res.status(200).json(orders);
 
   } catch (error) {

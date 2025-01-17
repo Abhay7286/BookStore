@@ -7,30 +7,25 @@ const Profile = () => {
   const { user, updateUser, updateAddress, userOrders, fetchUserOrders } = useUserStore();
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [isEditingAddress, setIsEditingAddress] = useState(false);
-  
+
   useEffect(() => {
     fetchUserOrders();
   }, [fetchUserOrders]);
-  
+
   const [formData, setFormData] = useState({
     name: user.name,
     email: user.email,
     phone: user.phone,
   });
-  
-  const [addressData, setAddressData] = useState(() => {
-    const address = user.address && user.address[0] ? user.address[0] : {};
-    return {
-      street: address.street || "",
-      landmark: address.landmark || "",
-      city: address.city || "",
-      state: address.state || "",
-      pincode: address.pincode || "",
-      country: address.country || "",
-    };
-  });
-  
 
+  const [addressData, setAddressData] = useState( {
+      street: user.address.street || "",
+      landmark: user.address.landmark || "",
+      city: user.address.city || "",
+      state: user.address.state || "",
+      pincode: user.address.pincode || "",
+      country: user.address.country || "",
+  });
 
   const latestOrder = userOrders && userOrders.length > 0 && (userOrders[userOrders.length - 1]);
 
@@ -102,32 +97,42 @@ const Profile = () => {
       </section>
 
       <section className="address-book">
-      {user.address && user.address.length > 0 ? (
-  <>
-    <h2>Saved Addresses</h2>
-    <div className="address-card">
-      <h3>Address</h3>
-      <p>
-        Street: {addressData.street} <br />
-        Landmark: {addressData.landmark} <br />
-        City: {addressData.city} <br />
-        State: {addressData.state} <br />
-        Pincode: {addressData.pincode} <br />
-        Country: {addressData.country}
-      </p>
-      <button
-        className="edit-btn"
-        onClick={() => {
-          setIsEditingAddress(true);
-        }}
-      >
-        Edit
-      </button>
-    </div>
-  </>
-) : (
-  <p>No saved addresses available.</p>
-)}
+        {addressData  ? (
+          <>
+            <h2>Saved Addresses</h2>
+            <div className="address-card">
+              <h3>Address</h3>
+              <p>
+                Street: {addressData.street} <br />
+                Landmark: {addressData.landmark} <br />
+                City: {addressData.city} <br />
+                State: {addressData.state} <br />
+                Pincode: {addressData.pincode} <br />
+                Country: {addressData.country}
+              </p>
+              <button
+                className="edit-btn"
+                onClick={() => {
+                  setIsEditingAddress(true);
+                }}
+              >
+                Edit
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <p>No saved addresses available.</p>
+            <button
+              className="edit-btn"
+              onClick={() => {
+                setIsEditingAddress(true);
+              }}
+            >
+              Add
+            </button>
+          </>
+        )}
 
       </section>
 
