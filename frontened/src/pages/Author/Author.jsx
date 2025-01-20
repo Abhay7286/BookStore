@@ -4,10 +4,11 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './Author.css';
-import GenreCard from '../../components/GenreCard/GenreCard.jsx';
+import AuthorsCard from '../../components/AuthorsCard/AuthorsCard.jsx';
 
 const Author = () => {
   const { fetchBooksByAuthor } = useBookStore();
+  const {books} = useBookStore()
 
   const { author } = useParams();
   const auth = author.toLowerCase();
@@ -15,6 +16,8 @@ const Author = () => {
   useEffect(() => {
     fetchBooksByAuthor(auth);
   }, [fetchBooksByAuthor, author]);
+
+  console.log(auth)
 
 
   return (
@@ -29,7 +32,7 @@ const Author = () => {
       </motion.h1>
 
       <div className="card-container">
-        <GenreCard />
+        <AuthorsCard books={books}  />
       </div>
     </ >
   )

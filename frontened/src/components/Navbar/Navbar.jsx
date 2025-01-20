@@ -89,7 +89,7 @@ const Navbar = () => {
           </Link>
           <ul className="dropdown">
             <li>
-              <Link to="/author/jk-rowling">J.K. Rowling</Link>
+              <Link to="/author/Franz Kafka">Franz Kafka</Link>
             </li>
             <li>
               <Link to="/author/george-martin">George R.R. Martin</Link>

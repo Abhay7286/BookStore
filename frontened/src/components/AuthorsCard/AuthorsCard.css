@@ -1,0 +1,53 @@
+.author-card {
+    height: 64vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    background-color: #fff;
+  }
+  
+  .author-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+  }
+  
+  .author-card img {
+    width: 90%;
+    height: 295px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .author-book-title {
+    font-size: 1rem;
+    color: #333;
+    margin: 10px 0 5px;
+    text-align: center;
+  }
+  
+  .author-book-author {
+    font-size: 0.9rem;
+    color: black;
+    text-align: center;
+  }
+  .author-book-price {
+    font-size: 0.9rem;
+    color: black;
+    text-align: center;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .genre-head h1 {
+      font-size: 2rem;
+    }
+  
+    .genre-card img {
+      height: 200px;
+    }
+  }
+  

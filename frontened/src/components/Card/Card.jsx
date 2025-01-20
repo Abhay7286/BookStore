@@ -43,25 +43,6 @@ const Card = () => {
                   onClick={() => handleToggle(book._id)}
                   aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
                 />
-                {/* <svg className="card-svg" viewBox="0 0 375 283">
-                  <rect
-                    x="159.52"
-                    y="175"
-                    width="152"
-                    height="152"
-                    rx="8"
-                    transform="rotate(-45 159.52 175)"
-                    fill="white"
-                  />
-                  <rect
-                    y="107.48"
-                    width="152"
-                    height="152"
-                    rx="8"
-                    transform="rotate(-45 0 107.48)"
-                    fill="white"
-                  />
-                </svg> */}
                 <div className="card-image-container">
                   <div className="card-shadow"></div>
                   <img
@@ -75,10 +56,8 @@ const Card = () => {
                   <div className="card-details">
                     <span className="card-author">{book.author}</span>
                     <span className="card-price">${book.price || "0.00"}</span>
-                    {/* <span className="card-genre">{book.genre}</span> */}
                   </div>
                   <div className="card-button">
-                    {/* <button className="view-details">View Details</button> */}
                     <button className="add-to-cart" onClick={() => addToCart(book._id)}>
                       Add to Cart
                     </button>
